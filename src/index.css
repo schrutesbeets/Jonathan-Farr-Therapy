@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --surface-bg: #f6f5f1;
+    --surface-card: #efede7;
+    --surface-dark: #141413;
+    --ink-primary: #141413;
+    --ink-secondary: #52514d;
+    --ink-muted: #787670;
+    --accent-signal: #e04f26;
+    --accent-signal-hover: #c53e18;
+    --border-hairline: #dddbd3;
+    --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  body {
+    background-color: var(--surface-bg);
+    color: var(--ink-primary);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+  }
+}
+
+.heading-display {
+  font-size: clamp(2.25rem, 1.5rem + 2.5vw, 4.25rem);
+  line-height: 1.06;
+}
+
+.heading-section {
+  font-size: clamp(1.75rem, 1.2rem + 1.5vw, 2.75rem);
+  line-height: 1.15;
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+}
+
+.font-technical {
+  font-family: var(--font-mono);
+}
+
+/* Native <details> indicator refinement per HTML disclosure guidelines */
+details > summary {
+  list-style: none;
+}
+
+details > summary::-webkit-details-marker {
+  display: none;
+}
