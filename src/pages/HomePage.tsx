@@ -22,6 +22,7 @@ import {
   StarburstShape,
 } from '../components/MeridenShapes';
 import { FaqAccordion } from '../components/FaqAccordion';
+import { assetUrl } from '../lib/assetUrl';
 
 export function HomePage() {
   const [autocrossView, setAutocrossView] = useState<'car' | 'track'>('car');
@@ -65,7 +66,7 @@ export function HomePage() {
           <div className="lg:col-span-5 relative">
             <div className="relative overflow-hidden rounded-sm bg-[var(--meriden-terracotta)]/20 shadow-2xl">
               <img
-                src="/media/jonathan-hero.jpg"
+                src={assetUrl('media/jonathan-hero.jpg')}
                 alt="Jonathan Farr, LMHC, smiling in a blue sweater and striped tie"
                 width={1066}
                 height={1600}
@@ -174,8 +175,8 @@ export function HomePage() {
             <div className="md:col-span-5 relative overflow-hidden rounded-xl bg-[var(--meriden-espresso)] aspect-[4/3]">
               <video
                 ref={videoRef}
-                src="/media/vinyl-spin.mp4"
-                poster="/media/vinyl-turntable.jpg"
+                src={assetUrl('media/vinyl-spin.mp4')}
+                poster={assetUrl('media/vinyl-turntable.jpg')}
                 autoPlay
                 loop
                 muted
@@ -360,7 +361,7 @@ export function HomePage() {
             <figure className="relative overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-xl">
               {autocrossView === 'car' ? (
                 <img
-                  src="/media/autocross-car.jpg"
+                  src={assetUrl('media/autocross-car.jpg')}
                   alt="Silver convertible #99 driven by Jonathan Farr hard around autocross cones"
                   width={1600}
                   height={1067}
@@ -369,7 +370,7 @@ export function HomePage() {
                 />
               ) : (
                 <img
-                  src="/media/autocross-track.jpg"
+                  src={assetUrl('media/autocross-track.jpg')}
                   alt="Aerial view of Moore Army Air Field in Ayer, Mass. with green autocross driving line around orange cones"
                   width={1600}
                   height={1297}

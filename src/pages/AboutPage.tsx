@@ -8,6 +8,7 @@ import {
   MeridenMosaicStrip,
   ScallopBadgeShape,
 } from '../components/MeridenShapes';
+import { assetUrl } from '../lib/assetUrl';
 
 export function AboutPage() {
   return (
@@ -76,7 +77,7 @@ export function AboutPage() {
 
               <figure className="relative z-10 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
                 <img
-                  src="/media/jonathan-glasses.jpg"
+                  src={assetUrl('media/jonathan-glasses.jpg')}
                   alt="Jonathan Farr portrait in April 2026 wearing clear-frame glasses and patterned shirt"
                   width={1064}
                   height={1600}
@@ -90,7 +91,7 @@ export function AboutPage() {
 
             <figure className="sm:w-3/4 sm:ml-auto overflow-hidden rounded-sm border-4 border-[var(--meriden-cream)] shadow-xl bg-[var(--meriden-cream)] text-[var(--meriden-espresso)]">
               <img
-                src="/media/jonathan-1997.jpg"
+                src={assetUrl('media/jonathan-1997.jpg')}
                 alt="Jonathan Farr in 1997 filming with a camera in a college dorm room"
                 width={1600}
                 height={1199}
@@ -110,7 +111,7 @@ export function AboutPage() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5 reveal-on-scroll">
             <img
-              src="/media/jonathan-seated.jpg"
+              src={assetUrl('media/jonathan-seated.jpg')}
               alt="Jonathan Farr seated casually on a chair with boots and plaid shirt"
               width={1066}
               height={1600}

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Receipt, Video } from 'lucide-react';
 import { AVIATION_LINKS, PRACTICE_CONFIG } from '../data/siteContent';
 import { ScallopBadgeShape, StarburstShape } from '../components/MeridenShapes';
+import { assetUrl } from '../lib/assetUrl';
 
 export function ServicesPage() {
   return (
@@ -45,7 +46,7 @@ export function ServicesPage() {
           <div className="lg:col-span-5">
             <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
               <img
-                src="/media/studio-mic.jpg"
+                src={assetUrl('media/studio-mic.jpg')}
                 alt="Vintage metallic condenser microphone under warm stage lighting"
                 width={1600}
                 height={1067}
@@ -181,7 +182,7 @@ export function ServicesPage() {
           <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
             <figure className="lg:col-span-6 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
               <img
-                src="/media/saab-340.jpg"
+                src={assetUrl('media/saab-340.jpg')}
                 alt="Red and silver Saab 340 turboprop aircraft on tarmac with ramp marshaller"
                 width={1600}
                 height={1200}
@@ -277,7 +278,7 @@ export function ServicesPage() {
 
             <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
               <img
-                src="/media/piano-sheet-music.jpg"
+                src={assetUrl('media/piano-sheet-music.jpg')}
                 alt="Open sheet music on an upright piano"
                 width={1600}
                 height={1067}
@@ -291,7 +292,7 @@ export function ServicesPage() {
           <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
             <figure className="lg:col-span-6 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
               <img
-                src="/media/phd-books.jpg"
+                src={assetUrl('media/phd-books.jpg')}
                 alt="Person standing against a brick wall holding a tall stack of encyclopedia volumes in front of their face"
                 width={1174}
                 height={1600}
@@ -343,7 +344,7 @@ export function ServicesPage() {
 
             <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
               <img
-                src="/media/red-seat-fenway.jpg"
+                src={assetUrl('media/red-seat-fenway.jpg')}
                 alt="Lone red stadium seat standing out in a sea of green seats"
                 width={1600}
                 height={1063}

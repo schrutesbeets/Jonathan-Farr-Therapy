@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assetUrl';
+
 export type EssayBlock =
   | { type: 'paragraph'; html: string }
   | { type: 'heading'; text: string }
@@ -25,7 +27,7 @@ export const BLOG_POSTS: BlogPost[] = [
     dateLabel: 'October 19, 2026',
     readTime: '5 min read',
     category: 'CONFRONTATION & VALUES',
-    coverImage: '/media/red-seat-fenway.jpg',
+    coverImage: assetUrl('media/red-seat-fenway.jpg'),
     coverAlt: 'Single red stadium seat standing out among rows of green seats',
     coverWidth: 1600,
     coverHeight: 1063,
@@ -140,7 +142,7 @@ export const BLOG_POSTS: BlogPost[] = [
     dateLabel: 'September 10, 2026',
     readTime: '6 min read',
     category: 'PERFORMANCE & PERFECTIONISM',
-    coverImage: '/media/piano-sheet-music.jpg',
+    coverImage: assetUrl('media/piano-sheet-music.jpg'),
     coverAlt: 'Open classical piano score resting on an upright piano above keys',
     coverWidth: 1600,
     coverHeight: 1067,
@@ -243,7 +245,7 @@ export const BLOG_POSTS: BlogPost[] = [
     dateLabel: 'May 16, 2020',
     readTime: '4 min read',
     category: 'ACT & VALUES IN PRACTICE',
-    coverImage: '/media/vinyl-turntable.jpg',
+    coverImage: assetUrl('media/vinyl-turntable.jpg'),
     coverAlt: 'Vinyl record spinning under a warm amber filament lamp',
     coverWidth: 1067,
     coverHeight: 1600,

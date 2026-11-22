@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { assetUrl } from '../lib/assetUrl';
 
 export function BlogPage() {
   return (
@@ -27,7 +28,7 @@ export function BlogPage() {
           <div className="lg:col-span-6">
             <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
               <img
-                src="/media/oban-sunset.jpg"
+                src={assetUrl('media/oban-sunset.jpg')}
                 alt="Silhouetted tall ships in harbor at sunset in Oban, Scotland"
                 width={1600}
                 height={1199}

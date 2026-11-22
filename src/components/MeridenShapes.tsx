@@ -1,3 +1,5 @@
+import { assetUrl } from '../lib/assetUrl';
+
 interface ShapeProps {
   color?: string;
   className?: string;
@@ -118,7 +120,7 @@ export function MeridenMosaicStrip() {
 
         <div className="aspect-square overflow-hidden">
           <img
-            src="/media/red-seat-fenway.jpg"
+            src={assetUrl('media/red-seat-fenway.jpg')}
             alt="One bright red stadium seat standing out among rows of green seats"
             width={1600}
             height={1063}
@@ -139,7 +141,7 @@ export function MeridenMosaicStrip() {
 
         <div className="aspect-square overflow-hidden">
           <img
-            src="/media/discovery-flight.jpg"
+            src={assetUrl('media/discovery-flight.jpg')}
             alt="Jonathan Farr wearing aviation headset and sunglasses inside cockpit during a discovery flight"
             width={1600}
             height={1200}

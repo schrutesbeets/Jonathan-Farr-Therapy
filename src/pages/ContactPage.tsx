@@ -1,5 +1,6 @@
 import { ArrowUpRight, Calendar, Lock, Mail, MessageSquare, Phone } from 'lucide-react';
 import { PRACTICE_CONFIG } from '../data/siteContent';
+import { assetUrl } from '../lib/assetUrl';
 
 export function ContactPage() {
   return (
@@ -44,7 +45,7 @@ export function ContactPage() {
           <div className="lg:col-span-6">
             <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
               <img
-                src="/media/runway-28.jpg"
+                src={assetUrl('media/runway-28.jpg')}
                 alt="Runway 28 stretching toward the horizon at twilight"
                 width={1600}
                 height={1044}

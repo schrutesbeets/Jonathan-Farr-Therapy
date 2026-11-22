@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { Menu, ShieldCheck, ArrowUpRight } from 'lucide-react';
 import { PRACTICE_CONFIG } from '../data/siteContent';
 import { useScrollReveal } from '../hooks/useScrollReveal';
+import { assetUrl } from '../lib/assetUrl';
 
 const HEADER_NAV = [
   { to: '/about', label: 'About' },
@@ -125,7 +126,7 @@ export function Layout() {
             className="flex items-center gap-3 text-[var(--meriden-white)] no-underline group"
           >
             <img
-              src="/media/jft-logo-white.png"
+              src={assetUrl('media/jft-logo-white.png')}
               alt=""
               width={1473}
               height={1360}

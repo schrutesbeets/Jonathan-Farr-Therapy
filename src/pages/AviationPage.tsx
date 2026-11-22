@@ -5,6 +5,7 @@ import {
   PRACTICE_CONFIG,
 } from '../data/siteContent';
 import { FaqAccordion } from '../components/FaqAccordion';
+import { assetUrl } from '../lib/assetUrl';
 
 const OFFICIAL_RESOURCES = [
   {
@@ -80,7 +81,7 @@ export function AviationPage() {
           <div className="lg:col-span-5">
             <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
               <img
-                src="/media/discovery-flight.jpg"
+                src={assetUrl('media/discovery-flight.jpg')}
                 alt="Jonathan Farr inside small aircraft cockpit wearing David Clark headset during a discovery flight"
                 width={1600}
                 height={1200}
