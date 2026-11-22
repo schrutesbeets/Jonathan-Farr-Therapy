@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
-    base: env.GITHUB_PAGES === 'true' ? '/Jonathan-Farr-Therapy/' : '/',
+    base: env.VITE_BASE_PATH || '/',
     plugins: [react(), tailwindcss()],
   };
 });

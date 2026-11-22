@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="text-scale" content="scale" />
+    <title>Jonathan Farr Therapy — Redesign Variations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Oswald:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #fbecdc;
+        --ink: #362117;
+        --terracotta: #863527;
+        --vermilion: #fa5537;
+        --card: #ffffff;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        background: var(--vermilion);
+        color: #ffffff;
+        padding: 3.5rem 1.5rem;
+      }
+      .wrap {
+        max-width: 64rem;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .eyebrow {
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        opacity: 0.9;
+        margin: 0 0 0.75rem;
+      }
+      h1 {
+        font-family: 'Bodoni Moda', Georgia, serif;
+        font-size: clamp(2.4rem, 1.5rem + 3vw, 4.2rem);
+        line-height: 1.02;
+        text-transform: uppercase;
+        letter-spacing: -0.03em;
+        margin: 0 0 1rem;
+      }
+      .lead {
+        max-width: 40rem;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin: 0;
+      }
+      main {
+        flex: 1;
+        padding: 3rem 1.5rem 4rem;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+        gap: 1.5rem;
+      }
+      .card {
+        background: var(--card);
+        border: 2px solid rgba(250, 85, 55, 0.25);
+        border-radius: 1rem;
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 1.5rem;
+      }
+      .tag {
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.78rem;
+        color: var(--vermilion);
+        margin: 0 0 0.5rem;
+      }
+      h2 {
+        font-family: 'Bodoni Moda', Georgia, serif;
+        font-size: 1.85rem;
+        line-height: 1.1;
+        margin: 0 0 0.75rem;
+        color: var(--terracotta);
+      }
+      p {
+        margin: 0;
+        line-height: 1.6;
+        font-size: 0.96rem;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        border: 2px solid var(--vermilion);
+        background: var(--vermilion);
+        color: #ffffff;
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.9rem;
+        padding: 0.8rem 1.6rem;
+        text-decoration: none;
+        transition: background-color 0.2s ease, color 0.2s ease;
+      }
+      .btn:hover,
+      .btn:focus-visible {
+        background: transparent;
+        color: var(--vermilion);
+      }
+      .meta {
+        margin-top: 0.75rem;
+        font-size: 0.8rem;
+        color: var(--terracotta);
+        font-family: 'Oswald', sans-serif;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap">
+        <p class="eyebrow">Jonathan Farr Therapy · Design Preview Hub</p>
+        <h1>Website Redesign Variations</h1>
+        <p class="lead">
+          Select a live variation below to preview and compare layouts, typography,
+          and brand direction for Jonathan Farr, LMHC.
+        </p>
+      </div>
+    </header>
+    <main>
+      <div class="wrap grid">
+        <article class="card">
+          <div>
+            <p class="tag">Variation 01 · Branch: main</p>
+            <h2>Braun &amp; Editorial Minimal</h2>
+            <p>
+              Clean alabaster and carbon industrial grid with structured telemetry
+              cards, quiet restraint, and concise four-page architecture.
+            </p>
+          </div>
+          <div>
+            <a class="btn" href="./v1/">Open Variation 1 →</a>
+            <p class="meta">Path: /Jonathan-Farr-Therapy/v1/</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div>
+            <p class="tag">Variation 02 · Branch: v2-meriden-bold</p>
+            <h2>Meriden Bold &amp; Dynamic</h2>
+            <p>
+              High-contrast vermilion and warm cream editorial design with
+              geometric emblems, autocross poster feature, tipping-point
+              carousel, full blog essays, and aviation FAQ.
+            </p>
+          </div>
+          <div>
+            <a class="btn" href="./v2/">Open Variation 2 →</a>
+            <p class="meta">Path: /Jonathan-Farr-Therapy/v2/</p>
+          </div>
+        </article>
+      </div>
+    </main>
+  </body>
+</html>
