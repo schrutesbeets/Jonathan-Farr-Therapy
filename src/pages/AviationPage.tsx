@@ -1,92 +1,189 @@
-import { ArrowUpRight, Plane, ShieldAlert, FileCheck2 } from 'lucide-react';
-import { PRACTICE_CONFIG } from '../data/siteContent';
+import { ArrowUpRight, ExternalLink, FileCheck2, Plane } from 'lucide-react';
+import {
+  AVIATION_FAQS,
+  AVIATION_LINKS,
+  PRACTICE_CONFIG,
+} from '../data/siteContent';
+import { FaqAccordion } from '../components/FaqAccordion';
+
+const OFFICIAL_RESOURCES = [
+  {
+    label: 'FAA Therapy & Counseling FAQs for Pilots & ATCS',
+    href: AVIATION_LINKS.faaTherapyFaq,
+  },
+  {
+    label: 'FAA Information for Psychotherapists Treating Pilots & ATCS',
+    href: AVIATION_LINKS.faaPsychotherapists,
+  },
+  {
+    label: 'FAA Pilot Mental Fitness Hub',
+    href: AVIATION_LINKS.faaMentalFitness,
+  },
+  {
+    label: 'Most Common Reported Medical Conditions (FAA)',
+    href: AVIATION_LINKS.faaCommonConditions,
+  },
+  {
+    label: 'Pilot Mental Health Campaign (PMHC) Provider Considerations',
+    href: AVIATION_LINKS.pmhcGuide,
+  },
+  {
+    label: 'Federal Air Surgeon Dr. Susan Northrup on Pilot Mental Health',
+    href: AVIATION_LINKS.federalAirSurgeonVideo,
+  },
+];
 
 export function AviationPage() {
   return (
-    <div>
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
-            <Plane className="w-3.5 h-3.5" aria-hidden="true" />
-            <span>
-              AVIATION MENTAL HEALTH // PILOTS · ATCS · FLIGHT ATTENDANTS
-            </span>
+    <div className="overflow-x-clip">
+      {/* SECTION 1 — Full-Bleed Vermilion Aviation Hero */}
+      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="inline-flex items-center gap-2 font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
+              <Plane className="w-4 h-4" aria-hidden="true" />
+              <span>PILOTS · AIR TRAFFIC CONTROL SPECIALISTS · FLIGHT ATTENDANTS</span>
+            </div>
+
+            <h1 className="font-display type-hero text-white">
+              Pilots are
+              <br />
+              people, too.
+            </h1>
+
+            <p className="font-display-quote text-2xl sm:text-3xl text-[var(--meriden-cream)]">
+              You don’t have to choose between your career and your health.
+            </p>
+
+            <p className="font-prose text-base sm:text-lg text-white/95 max-w-2xl leading-relaxed">
+              Flying is a core part of your identity—and your livelihood.
+              Whether you’ve been thinking about therapy while worried it could
+              ground you, your medical application got deferred and you need a
+              therapist to help get you back in the sky, or you’re a flight
+              attendant at your breaking point, you need care from a clinician
+              who knows your world.
+            </p>
+
+            <div className="pt-2">
+              <a
+                href={PRACTICE_CONFIG.introCallUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-pill-light"
+              >
+                <span>Schedule Free 15-Minute Consultation</span>
+                <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+              </a>
+            </div>
           </div>
 
-          <h1 className="heading-display font-bold tracking-tight max-w-3xl">
-            Pilots are people, too.{' '}
-            <span className="font-editorial italic font-normal text-[var(--ink-secondary)]">
-              Flying is part of who you are.
-            </span>
-          </h1>
-
-          <p className="text-lg sm:text-xl text-[var(--ink-secondary)] max-w-3xl leading-relaxed">
-            Whether you’ve been putting off therapy because you’re worried an
-            AME will defer your medical, your medical application was already
-            deferred and you want to get back in the sky, or you’re a flight
-            attendant or controller carrying stress the general public doesn’t
-            understand—you need an aviation-informed clinician.
-          </p>
+          <div className="lg:col-span-5">
+            <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+              <img
+                src="/media/discovery-flight.jpg"
+                alt="Jonathan Farr inside small aircraft cockpit wearing David Clark headset during a discovery flight"
+                width={1600}
+                height={1200}
+                className="w-full h-auto aspect-[4/3] object-cover object-top"
+              />
+              <figcaption className="bg-[var(--meriden-espresso)] text-[var(--meriden-cream)] px-4 py-2.5 font-condensed text-xs uppercase tracking-widest">
+                Me on a discovery flight from Minuteman Airport (6B6)
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </section>
 
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <article className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4">
-            <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              <ShieldAlert className="w-4 h-4" aria-hidden="true" />
-              <span>FAA REPORTING & PRIVACY</span>
-            </div>
-            <h2 className="text-xl font-bold">
-              Does entering counseling trigger an automatic report to the FAA?
+      {/* SECTION 2 — Aviation-Informed Care & Collaborative Documentation */}
+      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="lg:col-span-7 space-y-5 reveal-on-scroll">
+            <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
+              AVIATION-INFORMED COUNSELING · 12+ YEARS EXPERIENCE
+            </p>
+            <h2 className="font-display type-h2 text-[var(--meriden-vermilion)]">
+              Transparent documentation. Zero surprises.
             </h2>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] leading-relaxed">
-              <strong>Hell no.</strong> I will never notify the FAA or your
-              Aviation Medical Examiner (AME) about your sessions without your
-              knowledge. Pilots are not obliged to report routine counseling
-              until their next medical examination.
+            <p className="font-prose text-base sm:text-lg text-[var(--meriden-espresso)] leading-relaxed">
+              I come to this work with a passion for human flight and a strong
+              awareness of your context: constant crossing of time zones,
+              stretches away from family, and the daily uncertainties of the job
+              so you don’t have to spend half your session explaining how
+              aviation works.
             </p>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] leading-relaxed">
-              Furthermore, paying privately ($200/session) outside of insurance
-              panels means no automated insurance diagnostic codes are submitted
-              to third-party clearinghouses without your involvement.
+            <p className="font-prose text-base sm:text-lg text-[var(--meriden-espresso)] leading-relaxed">
+              <strong>I’ll bring</strong> my knowledge, enthusiasm, and skill
+              with clinical documentation. When the FAA requests records, I know
+              how to satisfy those requirements—and it is always a{' '}
+              <strong>transparent, collaborative process</strong> where you
+              review every word before anything is shared.
             </p>
-          </article>
+            <p className="font-prose text-base sm:text-lg text-[var(--meriden-espresso)] leading-relaxed">
+              <strong>You’ll bring</strong> a desire for change and a
+              willingness to be candid. Apprehension, confusion, worry,
+              frustration—all of that is welcome in the room.
+            </p>
+          </div>
 
-          <article className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4">
-            <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              <FileCheck2 className="w-4 h-4" aria-hidden="true" />
-              <span>COLLABORATIVE DOCUMENTATION</span>
-            </div>
-            <h2 className="text-xl font-bold">
-              What if the FAA requests treatment documentation?
-            </h2>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] leading-relaxed">
-              In May 2026, the FAA issued updated guidance encouraging pilots
-              and controllers to seek mental health counseling as compatible
-              with unrestricted medical certification.
-            </p>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] leading-relaxed">
-              If the FAA ever requests records, I only share information with
-              your signed release, and{' '}
-              <strong>
-                you and I review together every word to be shared
-              </strong>
-              —providing exactly what is requested, no less and no more.
-            </p>
-          </article>
-        </div>
-
-        <div className="max-w-6xl mx-auto mt-10">
-          <a
-            href={PRACTICE_CONFIG.bookingUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors"
+          <aside
+            aria-label="Official FAA & PMHC Resources"
+            className="lg:col-span-5 rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/75 p-7 sm:p-8 space-y-5 reveal-on-scroll"
           >
-            <span>Book a Confidential 15-Minute Consultation</span>
-            <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
-          </a>
+            <div className="flex items-center gap-2 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)] border-b border-[var(--meriden-vermilion)]/20 pb-3">
+              <FileCheck2 className="w-4 h-4" aria-hidden="true" />
+              <span>THINGS ARE CHANGING // OFFICIAL FAA &amp; PMHC LINKS</span>
+            </div>
+            <p className="font-prose text-sm text-[var(--meriden-espresso)]">
+              Up until recently, aviation mental health was left in the shadows.
+              These official resources outline your rights and pathways:
+            </p>
+            <ul className="space-y-3 list-none p-0 m-0">
+              {OFFICIAL_RESOURCES.map((res) => (
+                <li key={res.href}>
+                  <a
+                    href={res.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start justify-between gap-3 text-sm font-prose font-medium text-[var(--meriden-terracotta)] hover:text-[var(--meriden-vermilion)] underline decoration-1 underline-offset-4"
+                  >
+                    <span>{res.label}</span>
+                    <ExternalLink
+                      className="w-4 h-4 shrink-0 mt-0.5"
+                      aria-hidden="true"
+                    />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      {/* SECTION 3 — Complete 5-Question Aviation FAQ Accordion */}
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-24">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="space-y-2 reveal-on-scroll">
+            <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
+              FAA REPORTING, DIAGNOSIS &amp; MEDICATION
+            </p>
+            <h2 className="font-display type-h2 text-[var(--meriden-vermilion)]">
+              Still Have Questions?
+            </h2>
+          </div>
+
+          <FaqAccordion items={AVIATION_FAQS} groupName="aviation-faq" />
+
+          <div className="pt-4">
+            <a
+              href={PRACTICE_CONFIG.introCallUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pill-solid"
+            >
+              <span>Book Your Free 15-Minute Consultation</span>
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
     </div>

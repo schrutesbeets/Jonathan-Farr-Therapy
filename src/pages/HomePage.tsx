@@ -1,310 +1,521 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Gauge, Compass, Sparkles, Plus } from 'lucide-react';
 import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  Pause,
+  Play,
+} from 'lucide-react';
+import {
+  CLIENT_ARCHETYPES,
+  HERO_KEYWORDS,
+  HOME_FAQS,
+  METHOD_PILLARS,
   PRACTICE_CONFIG,
-  CORE_VALUE_PILLARS,
   TIPPING_POINTS,
-  CLIENT_POPULATIONS,
-  FAQS,
 } from '../data/siteContent';
+import {
+  GeometricRingShape,
+  MeridenMosaicStrip,
+  ScallopBadgeShape,
+  StarburstShape,
+} from '../components/MeridenShapes';
+import { FaqAccordion } from '../components/FaqAccordion';
 
 export function HomePage() {
+  const [autocrossView, setAutocrossView] = useState<'car' | 'track'>('car');
+  const [activeTippingIdx, setActiveTippingIdx] = useState(0);
+  const [vinylPaused, setVinylPaused] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const prefersReduced = window.matchMedia(
+      '(prefers-reduced-motion: reduce)',
+    ).matches;
+    if (prefersReduced) {
+      setVinylPaused(true);
+      videoRef.current?.pause();
+    }
+  }, []);
+
+  const toggleVinylPlayback = () => {
+    const video = videoRef.current;
+    if (!video) {
+      setVinylPaused((prev) => !prev);
+      return;
+    }
+    if (vinylPaused) {
+      video.play().catch(() => {});
+      setVinylPaused(false);
+    } else {
+      video.pause();
+      setVinylPaused(true);
+    }
+  };
+
+  const currentTipping = TIPPING_POINTS[activeTippingIdx];
+
   return (
-    <div>
-      {/* Hero Section — Target 5-second impression: "This guy's different." */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
-              <span>00 // ONLINE THERAPY IN MASSACHUSETTS</span>
+    <div className="overflow-x-clip">
+      {/* SECTION 1 — Full-Bleed Vermilion Hero (Meriden Section 1 cadence) */}
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--meriden-white)] px-5 sm:px-10 pt-8 pb-16 sm:pt-12 sm:pb-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          {/* Asymmetric Editorial Portrait Frame */}
+          <div className="lg:col-span-5 relative">
+            <div className="relative overflow-hidden rounded-sm bg-[var(--meriden-terracotta)]/20 shadow-2xl">
+              <img
+                src="/media/jonathan-hero.jpg"
+                alt="Jonathan Farr, LMHC, smiling in a blue sweater and striped tie"
+                width={1066}
+                height={1600}
+                {...({ fetchpriority: 'high' } as Record<string, string>)}
+                className="w-full h-auto object-cover aspect-[4/5]"
+              />
             </div>
+            <div
+              className="hidden sm:block absolute -bottom-7 -right-7 w-28 h-28 pointer-events-none"
+              aria-hidden="true"
+            >
+              <ScallopBadgeShape
+                color="var(--meriden-marigold)"
+                className={`w-full h-full animate-slow-spin ${
+                  vinylPaused ? 'motion-paused' : ''
+                }`}
+              />
+            </div>
+          </div>
 
-            <h1 className="heading-display font-bold tracking-tight text-[var(--ink-primary)]">
-              You’re actually good at what you do.{' '}
-              <span className="font-editorial italic font-normal text-[var(--ink-secondary)]">
-                You just struggle to believe it.
-              </span>
-            </h1>
-
-            <p className="text-lg sm:text-xl text-[var(--ink-secondary)] max-w-2xl leading-relaxed">
-              I help high-achievers spinning on the broken record of imposter
-              syndrome—especially those with narcissistic or abusive parents—stop
-              cycles of people-pleasing and emerge into a life that truly belongs
-              to them.
+          {/* Massive Editorial Headline + Condensed Keywords + Outline Pill CTA */}
+          <div className="lg:col-span-7 space-y-6 lg:pl-4">
+            <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
+              MASSACHUSETTS ONLINE TELEHEALTH · LMHC #{PRACTICE_CONFIG.licenseNumber}
             </p>
 
-            <div className="pt-2 flex flex-wrap items-center gap-4">
+            <h1 className="font-display type-hero text-[var(--meriden-white)]">
+              Jonathan
+              <br />
+              Farr
+              <br />
+              Therapy
+            </h1>
+
+            <ul
+              aria-label="Core Specialties"
+              className="flex flex-wrap items-center gap-x-6 gap-y-2 pt-2 font-condensed text-lg sm:text-xl tracking-[0.18em] uppercase text-[var(--meriden-cream)] list-none p-0 m-0"
+            >
+              {HERO_KEYWORDS.map((word) => (
+                <li key={word}>{word}</li>
+              ))}
+            </ul>
+
+            <p className="font-prose text-lg sm:text-xl text-[var(--meriden-white)]/95 max-w-xl leading-relaxed">
+              Online therapy in Massachusetts for high-achievers spinning on the
+              broken record of imposter syndrome.
+            </p>
+
+            <div className="pt-3 flex flex-wrap items-center gap-4">
               <a
-                href={PRACTICE_CONFIG.bookingUrl}
+                href={PRACTICE_CONFIG.introCallUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors"
+                className="btn-pill-light"
               >
-                <span>Schedule a Free 15-Minute Consultation</span>
+                <span>Schedule Free 15-Min Consult</span>
                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
               </a>
               <Link
                 to="/about"
-                className="inline-flex items-center gap-2 border border-[var(--ink-primary)] hover:bg-[var(--ink-primary)] hover:text-[var(--surface-bg)] font-technical text-xs sm:text-sm uppercase tracking-wider px-5 py-3.5 rounded-sm transition-colors"
+                className="font-condensed uppercase tracking-widest text-sm text-[var(--meriden-cream)] underline underline-offset-8 hover:text-white transition-colors px-2 py-2"
               >
-                <span>Why “I Was an Imposter, Too”</span>
+                Why “I Was an Imposter, Too” →
               </Link>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Functional Specification Card (Braun telemetry aesthetic) */}
-          <aside
-            aria-label="Practice Specifications"
-            className="lg:col-span-4 border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 space-y-5"
+      {/* SECTION 2 — Warm Cream Floating-Scallop Manifesto + Vinyl Loop */}
+      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
+        <div className="max-w-5xl mx-auto relative flex flex-col items-center text-center reveal-on-scroll">
+          <div
+            className="relative w-full py-10 sm:py-16 flex items-center justify-center"
           >
-            <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
-              <span className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
-                PRACTICE SPEC // JFT-2026
-              </span>
-              <span className="font-technical text-xs text-[var(--accent-signal)] font-medium">
-                ACTIVE
-              </span>
+            <div
+              className="absolute inset-0 flex items-center justify-center pointer-events-none"
+              aria-hidden="true"
+            >
+              <ScallopBadgeShape
+                color="var(--meriden-sky)"
+                className={`w-64 h-64 sm:w-80 sm:h-80 opacity-85 animate-slow-spin ${
+                  vinylPaused ? 'motion-paused' : ''
+                }`}
+              />
             </div>
 
-            <dl className="space-y-3 text-sm">
-              <div className="flex justify-between py-1.5 border-b border-[var(--border-hairline)]">
-                <dt className="font-technical text-xs uppercase text-[var(--ink-muted)]">
-                  Format
-                </dt>
-                <dd className="font-medium text-right">
-                  100% Virtual (MA Telehealth)
-                </dd>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-[var(--border-hairline)]">
-                <dt className="font-technical text-xs uppercase text-[var(--ink-muted)]">
-                  Session Cadence
-                </dt>
-                <dd className="font-medium text-right">
-                  55-Minute Individual
-                </dd>
-              </div>
-              <div className="flex justify-between py-1.5 border-b border-[var(--border-hairline)]">
-                <dt className="font-technical text-xs uppercase text-[var(--ink-muted)]">
-                  Standard Rate
-                </dt>
-                <dd className="font-medium text-right">
-                  ${PRACTICE_CONFIG.sessionFee} · Superbills & Mentaya OON
-                </dd>
-              </div>
-              <div className="flex justify-between py-1.5">
-                <dt className="font-technical text-xs uppercase text-[var(--ink-muted)]">
-                  Openings
-                </dt>
-                <dd className="font-medium text-right">
-                  Immediate · Mon–Thu
-                </dd>
-              </div>
-            </dl>
-
-            <blockquote className="pt-2 border-t border-[var(--border-hairline)] text-xs text-[var(--ink-secondary)] italic">
-              “Pressure doesn’t just make diamonds. It cracks them, too.”
-            </blockquote>
-          </aside>
-        </div>
-      </section>
-
-      {/* Section 01: The Tipping Point */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="max-w-3xl space-y-3">
-            <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              01 // THE TIPPING POINT
-            </p>
-            <h2 className="heading-section font-bold">
-              When the “a-ha” moment collides with the “oh, fuck” moment.
-            </h2>
-            <p className="text-[var(--ink-secondary)]">
-              Most people don’t book a therapy consultation when things are mildly
-              annoying. They reach out when a familiar pattern finally hits the
-              wall:
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {TIPPING_POINTS.map((item) => (
-              <article
-                key={item.category}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 flex flex-col justify-between space-y-4"
-              >
-                <div className="space-y-3">
-                  <p className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
-                    {item.category}
-                  </p>
-                  <p className="text-base sm:text-lg font-medium leading-snug">
-                    {item.quote}
-                  </p>
-                </div>
-                <p className="text-xs font-technical text-[var(--ink-secondary)] pt-3 border-t border-[var(--border-hairline)]">
-                  → {item.context}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Section 02: The Autocross Metaphor (Living at the Limit without Spinning Out) */}
-      <section className="border-b border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[#f6f5f1] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-5">
-            <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              <Gauge className="w-4 h-4" aria-hidden="true" />
-              <span>02 // THE AUTOCROSS PRINCIPLE: GRIP VS. SPINOUT</span>
+            <div className="relative z-10 max-w-3xl space-y-5">
+              <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-terracotta)]">
+                THIS GUY’S DIFFERENT
+              </p>
+              <h2 className="font-display-quote text-3xl sm:text-5xl text-[var(--meriden-terracotta)]">
+                You’re actually good at what you do—you just struggle to believe it.
+              </h2>
+              <p className="font-prose text-base sm:text-lg text-[var(--meriden-espresso)] max-w-2xl mx-auto leading-relaxed">
+                I specialize in helping high-achievers struggling with imposter
+                syndrome—especially those with narcissistic or abusive parents—to
+                stop cycles of people-pleasing and emerge into a life that truly
+                belongs to them.
+              </p>
             </div>
-            <h2 className="heading-section font-bold">
-              What if you could live life <em className="font-editorial">at</em>{' '}
-              or <em className="font-editorial">near</em> the limit—instead of
-              constantly trying to push past it?
-            </h2>
-            <p className="text-[#d8d6ce] leading-relaxed">
-              The tires on a race car only have so much grip. Just before they
-              lose that grip, they tell you—you’ll hear them start to{' '}
-              <strong className="text-white">chirp</strong>. Chances are, that’s
-              where you are right now, and it’s a frightening place. You’re
-              afraid you’re going to lose grip completely and spin out.
-            </p>
-            <p className="text-[#d8d6ce] leading-relaxed">
-              Does that mean settling for limitations?{' '}
-              <strong className="text-white">Absolutely not.</strong> It’s that
-              very chirping of the tires that tells an autocross driver where the
-              limit is—and knowing that limit is what gets them around the track{' '}
-              <em>faster</em>. Developing that awareness so you can set real
-              boundaries without burning out is what we do together.
-            </p>
           </div>
 
-          <div className="lg:col-span-5 border border-white/15 bg-white/5 p-6 sm:p-8 space-y-4">
-            <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              BOUNDARY TELEMETRY // 3 QUESTIONS
-            </p>
-            <p className="text-sm text-[#d8d6ce]">
-              Imagine establishing one genuine boundary in your life right now.
-              Ask yourself:
-            </p>
-            <ol className="space-y-3 text-sm sm:text-base font-medium">
-              <li className="border-l-2 border-[var(--accent-signal)] pl-3">
-                1. What would I finally be able to accomplish?
-              </li>
-              <li className="border-l-2 border-[var(--accent-signal)] pl-3">
-                2. What would it feel like if I wrote the story of my own life?
-              </li>
-              <li className="border-l-2 border-[var(--accent-signal)] pl-3">
-                3. Who could I connect with more fully and deeply?
-              </li>
-            </ol>
+          {/* "Broken Record" Vinyl Loop Card with Accessible Pause/Play Toggle */}
+          <div className="mt-10 w-full max-w-4xl rounded-2xl bg-[var(--meriden-cream-tint)] border-2 border-[var(--meriden-vermilion)]/20 p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center text-left">
+            <div className="md:col-span-5 relative overflow-hidden rounded-xl bg-[var(--meriden-espresso)] aspect-[4/3]">
+              <video
+                ref={videoRef}
+                src="/media/vinyl-spin.mp4"
+                poster="/media/vinyl-turntable.jpg"
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-hidden="true"
+                className="w-full h-full object-cover"
+              />
+              <button
+                type="button"
+                onClick={toggleVinylPlayback}
+                className="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-[var(--meriden-espresso)]/90 text-[var(--meriden-cream)] px-3.5 py-1.5 font-condensed text-xs uppercase tracking-wider hover:bg-[var(--meriden-vermilion)] transition-colors cursor-pointer"
+              >
+                {vinylPaused ? (
+                  <>
+                    <Play className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Play vinyl</span>
+                  </>
+                ) : (
+                  <>
+                    <Pause className="w-3.5 h-3.5" aria-hidden="true" />
+                    <span>Pause vinyl</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            <div className="md:col-span-7 space-y-3">
+              <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
+                THE BROKEN RECORD
+              </p>
+              <h3 className="font-display-quote text-2xl sm:text-3xl text-[var(--meriden-terracotta)]">
+                You’re never enough. Over and over again.
+              </h3>
+              <p className="font-prose text-sm sm:text-base text-[var(--meriden-espresso)] leading-relaxed">
+                Maybe it’s how much you make, how much you do, or how hard you
+                work. Maybe it’s someone else telling you that. Maybe it’s your
+                own inner voice. Either because you’re doing everything you can—or
+                struggling to do anything at all—you end up feeling like a failure.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Section 03: Why Private-Pay / Value Proposition */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="max-w-3xl space-y-3">
-            <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              03 // WHY STEP OUTSIDE INSURANCE PANELS
+      {/* SECTION 3 — 3-Column Graphic Method (Starburst / Scallop / Ring) */}
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-24">
+        <div className="max-w-7xl mx-auto space-y-14">
+          <div className="text-center space-y-2 reveal-on-scroll">
+            <p className="font-condensed text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
+              WHY PRIVATE-PAY · MY APPROACH
             </p>
-            <h2 className="heading-section font-bold">
-              What you get here that an in-network checklist won’t give you.
+            <h2 className="font-display type-h2 text-[var(--meriden-vermilion)]">
+              What Makes This Different
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {CORE_VALUE_PILLARS.map((pillar) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+            {METHOD_PILLARS.map((pillar) => (
               <article
-                key={pillar.index}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-bg)] p-6 sm:p-8 space-y-4"
+                key={pillar.id}
+                className="flex flex-col items-center text-center space-y-5 reveal-on-scroll"
               >
-                <div className="flex items-center justify-between font-technical text-xs text-[var(--ink-muted)] border-b border-[var(--border-hairline)] pb-3">
-                  <span>PILLAR {pillar.index}</span>
-                  <span>{pillar.label}</span>
+                <div className="w-28 h-28 flex items-center justify-center">
+                  {pillar.shape === 'starburst' && (
+                    <StarburstShape className="w-24 h-24" />
+                  )}
+                  {pillar.shape === 'scallop' && (
+                    <ScallopBadgeShape
+                      color="var(--meriden-marigold)"
+                      className="w-24 h-24"
+                    />
+                  )}
+                  {pillar.shape === 'ring' && (
+                    <GeometricRingShape
+                      color="var(--meriden-sky)"
+                      className="w-24 h-24"
+                    />
+                  )}
                 </div>
-                <h3 className="text-xl font-bold">{pillar.title}</h3>
-                <p className="text-sm text-[var(--ink-secondary)] leading-relaxed">
+
+                <div className="space-y-1.5">
+                  <h3 className="font-display type-h3 text-[var(--meriden-vermilion)]">
+                    {pillar.title}
+                  </h3>
+                  <p className="font-condensed text-xs uppercase tracking-[0.18em] text-[var(--meriden-terracotta)]">
+                    {pillar.kicker}
+                  </p>
+                </div>
+
+                <p className="font-prose text-base text-[var(--meriden-espresso)] leading-relaxed max-w-sm">
                   {pillar.description}
                 </p>
               </article>
             ))}
           </div>
+
+          {/* 6 Populations Who Thrive Here */}
+          <div className="pt-8 reveal-on-scroll">
+            <div className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-6 sm:p-10 space-y-6">
+              <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--meriden-vermilion)]/20 pb-4">
+                <div>
+                  <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
+                    UNDER CONSTANT PRESSURE TO PERFORM
+                  </p>
+                  <h3 className="font-display-quote text-2xl sm:text-3xl text-[var(--meriden-terracotta)]">
+                    You may be…
+                  </h3>
+                </div>
+                <Link
+                  to="/services"
+                  className="font-condensed text-xs uppercase tracking-widest text-[var(--meriden-vermilion)] hover:text-[var(--meriden-terracotta)] underline underline-offset-4"
+                >
+                  Explore Services &amp; Out-of-Network Checker →
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {CLIENT_ARCHETYPES.map((item) => (
+                  <div key={item.id} className="space-y-1">
+                    <p className="font-condensed uppercase tracking-wider text-base text-[var(--meriden-vermilion)] font-medium">
+                      {item.label}
+                    </p>
+                    <p className="font-prose text-sm text-[var(--meriden-espresso)] leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Section 04: Populations Served */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
-            <div className="max-w-2xl space-y-3">
-              <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-                04 // SPECIALIZED POPULATIONS
-              </p>
-              <h2 className="heading-section font-bold">
-                Built for people under high performance pressure.
-              </h2>
-            </div>
-            <Link
-              to="/aviation-professionals"
-              className="inline-flex items-center gap-1.5 font-technical text-xs uppercase tracking-wider text-[var(--accent-signal)] hover:underline"
-            >
-              <Compass className="w-4 h-4" aria-hidden="true" />
-              <span>Explore Dedicated Aviation Briefing →</span>
-            </Link>
-          </div>
+      {/* SECTION 4 — Asymmetric Poster Feature: The Autocross Limit Metaphor */}
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-28">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5 space-y-6 reveal-on-scroll">
+            <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--meriden-terracotta)]">
+              THE AUTOCROSS PRINCIPLE · GRIP VS. SPINOUT
+            </p>
+            <h2 className="font-display type-h2 text-[var(--meriden-vermilion)]">
+              Pressure Cracks Diamonds.
+            </h2>
+            <p className="font-prose text-base sm:text-lg text-[var(--meriden-espresso)] leading-relaxed">
+              The tires on your car only have so much grip. Just before they
+              lose it, they tell you—you’ll hear them start to{' '}
+              <strong>chirp</strong>. Knowing that limit doesn’t hold a race car
+              driver back; it’s what gets them around the track <em>faster</em>{' '}
+              without spinning out.
+            </p>
+            <p className="font-prose text-base text-[var(--meriden-espresso)] leading-relaxed">
+              Awareness of your limits lets you set boundaries—not from the
+              outside, but from within:
+            </p>
+            <ol className="space-y-2 font-prose text-sm sm:text-base text-[var(--meriden-terracotta)] font-medium pl-5 list-decimal">
+              <li>What would I be able to accomplish?</li>
+              <li>What would it be like if I wrote the story of my own life?</li>
+              <li>Who could I connect with more fully, more deeply?</li>
+            </ol>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {CLIENT_POPULATIONS.map((pop) => (
-              <article
-                key={pop.id}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-3"
+            <div className="pt-2 flex flex-wrap gap-3">
+              <button
+                type="button"
+                onClick={() =>
+                  setAutocrossView((prev) => (prev === 'car' ? 'track' : 'car'))
+                }
+                className="btn-pill-vermilion"
               >
-                <p className="font-technical text-xs uppercase tracking-wider text-[var(--accent-signal)]">
-                  {pop.subtitle}
-                </p>
-                <h3 className="text-xl font-bold">{pop.title}</h3>
-                <p className="text-sm text-[var(--ink-secondary)] leading-relaxed">
-                  {pop.summary}
-                </p>
-              </article>
-            ))}
+                <span>
+                  {autocrossView === 'car'
+                    ? 'View Moore AAF Track Line'
+                    : 'View Autocross Car #99'}
+                </span>
+              </button>
+              <Link to="/about" className="btn-pill-solid">
+                <span>About Jonathan</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 reveal-on-scroll">
+            <figure className="relative overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-xl">
+              {autocrossView === 'car' ? (
+                <img
+                  src="/media/autocross-car.jpg"
+                  alt="Silver convertible #99 driven by Jonathan Farr hard around autocross cones"
+                  width={1600}
+                  height={1067}
+                  loading="lazy"
+                  className="w-full h-auto aspect-[4/3] object-cover"
+                />
+              ) : (
+                <img
+                  src="/media/autocross-track.jpg"
+                  alt="Aerial view of Moore Army Air Field in Ayer, Mass. with green autocross driving line around orange cones"
+                  width={1600}
+                  height={1297}
+                  loading="lazy"
+                  className="w-full h-auto aspect-[4/3] object-cover"
+                />
+              )}
+
+              {/* Asymmetric Overlaid White Poster Type (Meriden "self / love" visual signature) */}
+              <div
+                className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/35 pointer-events-none flex flex-col justify-between p-6 sm:p-10"
+                aria-hidden="true"
+              >
+                <span className="font-display text-4xl sm:text-6xl text-white tracking-tight">
+                  AT THE
+                </span>
+                <span className="font-display text-5xl sm:text-7xl text-white text-right tracking-tight">
+                  LIMIT
+                </span>
+              </div>
+
+              <figcaption className="bg-[var(--meriden-espresso)] text-[var(--meriden-cream)] px-5 py-3 font-condensed text-xs uppercase tracking-widest">
+                {autocrossView === 'car'
+                  ? 'Me, finding the limit · Photo: Paul Buckley, IG @thepaulbuckley'
+                  : 'Moore Army Air Field, Ayer, Mass. · Green line marks the autocross course'}
+              </figcaption>
+            </figure>
           </div>
         </div>
       </section>
 
-      {/* Section 05: Addressing Primary Hesitations (Native Exclusive <details> Accordion) */}
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
-              <Sparkles className="w-4 h-4" aria-hidden="true" />
-              <span>05 // CANDID ANSWERS TO REAL HESITATIONS</span>
+      {/* SECTION 5 — Interactive Vermilion "Tipping Point" Carousel (Meriden Bright Band) */}
+      <section
+        aria-label="Client Tipping Points"
+        className="bg-[var(--meriden-vermilion)] text-[var(--meriden-white)] px-5 sm:px-10 py-20 sm:py-28"
+      >
+        <div className="max-w-5xl mx-auto space-y-8">
+          <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/25 pb-4">
+            <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
+              THE TIPPING POINT // WHY PEOPLE FINALLY REACH OUT
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {TIPPING_POINTS.map((tp, idx) => (
+                <button
+                  key={tp.id}
+                  type="button"
+                  onClick={() => setActiveTippingIdx(idx)}
+                  className={`font-condensed text-xs uppercase tracking-wider px-3 py-1 rounded-full border transition-colors cursor-pointer ${
+                    idx === activeTippingIdx
+                      ? 'bg-white text-[var(--meriden-vermilion)] border-white'
+                      : 'border-white/50 text-white hover:border-white'
+                  }`}
+                >
+                  {tp.tag}
+                </button>
+              ))}
             </div>
-            <h2 className="heading-section font-bold">
-              What you’re probably wondering before you book.
+          </div>
+
+          <div className="min-h-[14rem] flex flex-col justify-center space-y-5">
+            <blockquote className="font-display-quote text-2xl sm:text-4xl lg:text-5xl text-white leading-tight">
+              {currentTipping.quote}
+            </blockquote>
+            <p className="font-prose text-base sm:text-lg text-[var(--meriden-cream)] max-w-2xl">
+              {currentTipping.subline}
+            </p>
+          </div>
+
+          <div className="flex items-center justify-between pt-2">
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                aria-label="Previous tipping point"
+                onClick={() =>
+                  setActiveTippingIdx(
+                    (prev) =>
+                      (prev - 1 + TIPPING_POINTS.length) %
+                      TIPPING_POINTS.length,
+                  )
+                }
+                className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-[var(--meriden-vermilion)] transition-colors cursor-pointer"
+              >
+                <ArrowLeft className="w-5 h-5" aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                aria-label="Next tipping point"
+                onClick={() =>
+                  setActiveTippingIdx(
+                    (prev) => (prev + 1) % TIPPING_POINTS.length,
+                  )
+                }
+                className="w-11 h-11 rounded-full border-2 border-white flex items-center justify-center hover:bg-white hover:text-[var(--meriden-vermilion)] transition-colors cursor-pointer"
+              >
+                <ArrowRight className="w-5 h-5" aria-hidden="true" />
+              </button>
+            </div>
+
+            <span className="font-condensed text-sm uppercase tracking-widest text-[var(--meriden-cream)]">
+              0{activeTippingIdx + 1} / 0{TIPPING_POINTS.length}
+            </span>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 6 — 5-Column Alternating Graphic Poster + Photo Strip */}
+      <MeridenMosaicStrip />
+
+      {/* SECTION 7 — Complete 8-Question Native FAQ Accordion + Closing Callout */}
+      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
+        <div className="max-w-4xl mx-auto space-y-10">
+          <div className="space-y-2 reveal-on-scroll">
+            <p className="font-condensed text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
+              QUESTIONS BEFORE YOU BOOK
+            </p>
+            <h2 className="font-display type-h2 text-[var(--meriden-vermilion)]">
+              Frequently Asked
             </h2>
           </div>
 
-          <div className="divide-y divide-[var(--border-hairline)] border-t border-b border-[var(--border-hairline)]">
-            {FAQS.map((faq) => (
-              <details
-                key={faq.question}
-                name="home-faq"
-                className="group py-5"
-              >
-                <summary className="flex items-center justify-between gap-4 cursor-pointer font-semibold text-base sm:text-lg select-none">
-                  <span>{faq.question}</span>
-                  <Plus
-                    className="w-5 h-5 shrink-0 text-[var(--accent-signal)] transition-transform group-open:rotate-45"
-                    aria-hidden="true"
-                  />
-                </summary>
-                <p className="mt-3 text-sm sm:text-base text-[var(--ink-secondary)] leading-relaxed pr-8">
-                  {faq.answer}
-                </p>
-              </details>
-            ))}
+          <FaqAccordion items={HOME_FAQS} groupName="home-faq" />
+        </div>
+      </section>
+
+      {/* Closing Bold Vermilion Banner */}
+      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 py-20 sm:py-24 text-center">
+        <div className="max-w-4xl mx-auto space-y-6 reveal-on-scroll">
+          <h2 className="font-display type-h2 text-white">
+            Your inner voice sucks.
+            <br />
+            It’s time to change it.
+          </h2>
+          <p className="font-prose text-lg sm:text-xl text-[var(--meriden-cream)] max-w-2xl mx-auto">
+            Book a free, 15-minute conversation with me to see if we’re the
+            right fit.
+          </p>
+          <div className="pt-2">
+            <a
+              href={PRACTICE_CONFIG.introCallUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-pill-light"
+            >
+              <span>Schedule a Free 15-Minute Consultation</span>
+              <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </section>
