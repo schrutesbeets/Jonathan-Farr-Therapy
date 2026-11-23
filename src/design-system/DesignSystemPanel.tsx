@@ -423,7 +423,13 @@ export function DesignSystemPanel({
 
           <div className="ds-drawer-toolbar">
             <span className="ds-variant-pill">
-              <span>{variantId === 'v1' ? 'V1 · Minimal Grid' : 'V2 · Meriden Bold'}</span>
+              <span>
+                {variantId === 'v1'
+                  ? 'V1 · Minimal Grid'
+                  : variantId === 'v2'
+                    ? 'V2 · Meriden Bold'
+                    : 'V3 · Fletcher Editorial'}
+              </span>
               {isCustomized ? '· Edited' : '· Default'}
             </span>
 

@@ -6,10 +6,12 @@ import { SETTINGS_COUNT } from '../design-system/schema';
 export function SwitcherHub() {
   const [v1Custom, setV1Custom] = useState(false);
   const [v2Custom, setV2Custom] = useState(false);
+  const [v3Custom, setV3Custom] = useState(false);
 
   useEffect(() => {
     setV1Custom(hasCustomSettings('v1'));
     setV2Custom(hasCustomSettings('v2'));
+    setV3Custom(hasCustomSettings('v3'));
   }, []);
 
   return (
@@ -71,6 +73,30 @@ export function SwitcherHub() {
                 <span aria-hidden="true">→</span>
               </Link>
               <span className="switcher-path-meta">Route: /v2 · Independent Design System</span>
+            </div>
+          </article>
+
+          <article className="switcher-card">
+            <div>
+              <div className="switcher-chip-row">
+                <span className="switcher-chip">Variation 03 · Fletcher</span>
+                <span className={`switcher-chip ${v3Custom ? 'is-custom' : ''}`}>
+                  {v3Custom ? 'Customized' : 'Default Theme'}
+                </span>
+              </div>
+              <h2>Atmospheric Dark &amp; Celadon</h2>
+              <p className="switcher-card-desc">
+                High-contrast Unna serif display, deep pine-slate and celadon
+                mist color blocking, edge-to-edge editorial photography, and
+                pill-shaped burnished rust accents.
+              </p>
+            </div>
+            <div className="switcher-card-footer">
+              <Link className="switcher-button" to="/v3">
+                <span>Launch Variation 03</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <span className="switcher-path-meta">Route: /v3 · Independent Design System</span>
             </div>
           </article>
         </div>

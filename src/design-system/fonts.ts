@@ -18,6 +18,13 @@ export const FONT_CATALOG: readonly FontDefinition[] = [
     preloaded: true,
   },
   {
+    family: 'Unna',
+    category: 'Display Serif',
+    fallback: 'serif',
+    googleParam: 'Unna:ital,wght@0,400;0,700;1,400;1,700',
+    preloaded: true,
+  },
+  {
     family: 'Instrument Serif',
     category: 'Display Serif',
     fallback: 'serif',
@@ -86,7 +93,8 @@ export const FONT_CATALOG: readonly FontDefinition[] = [
     family: 'DM Sans',
     category: 'Sans-Serif',
     fallback: 'sans-serif',
-    googleParam: 'DM+Sans:ital,wght@0,400..700;1,400',
+    googleParam: 'DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,400',
+    preloaded: true,
   },
   {
     family: 'Source Sans 3',

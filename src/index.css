@@ -3,6 +3,7 @@
 @import "./design-system/site-tokens.css";
 @import "./variants/v1/v1.css";
 @import "./variants/v2/v2.css";
+@import "./variants/v3/v3.css";
 @import "./design-system/panel.css";
 
 @layer base {

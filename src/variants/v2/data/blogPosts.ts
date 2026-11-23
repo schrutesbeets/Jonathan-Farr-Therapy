@@ -13,6 +13,7 @@ export interface BlogPost {
   readTime: string;
   category: string;
   coverImage: string;
+  coverVideo?: string;
   coverAlt: string;
   coverWidth: number;
   coverHeight: number;
@@ -246,6 +247,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readTime: '4 min read',
     category: 'ACT & VALUES IN PRACTICE',
     coverImage: assetUrl('media/vinyl-turntable.jpg'),
+    coverVideo: assetUrl('media/vinyl-spin.mp4'),
     coverAlt: 'Vinyl record spinning under a warm amber filament lamp',
     coverWidth: 1067,
     coverHeight: 1600,

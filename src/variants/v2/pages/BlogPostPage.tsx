@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogPosts';
 import { PRACTICE_CONFIG } from '../data/siteContent';
+import { AmbientLoopVideo } from '../../../components/AmbientLoopVideo';
 
 function domNodeToReact(node: ChildNode, key: string): ReactNode {
   if (node.nodeType === Node.TEXT_NODE) {
@@ -113,13 +114,23 @@ export function BlogPostPage() {
       <div className="bg-[var(--meriden-cream)] ds-section">
         <div className="max-w-3xl mx-auto space-y-10">
           <figure className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
-            <img
-              src={post.coverImage}
-              alt={post.coverAlt}
-              width={post.coverWidth}
-              height={post.coverHeight}
-              className="w-full h-auto max-h-[28rem] object-cover"
-            />
+            {post.coverVideo ? (
+              <AmbientLoopVideo
+                src={post.coverVideo}
+                poster={post.coverImage}
+                ariaLabel={post.coverAlt}
+                showControls
+                className="w-full h-auto max-h-[28rem] object-cover"
+              />
+            ) : (
+              <img
+                src={post.coverImage}
+                alt={post.coverAlt}
+                width={post.coverWidth}
+                height={post.coverHeight}
+                className="w-full h-auto max-h-[28rem] object-cover"
+              />
+            )}
           </figure>
 
           <div className="space-y-5 font-prose text-base sm:text-lg text-[var(--meriden-espresso)] leading-relaxed">

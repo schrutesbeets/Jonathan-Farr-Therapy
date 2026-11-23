@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogPosts';
+import { AmbientLoopVideo } from '../../../components/AmbientLoopVideo';
 import { assetUrl } from '../../../lib/assetUrl';
 
 export function BlogPage() {
@@ -59,14 +60,23 @@ export function BlogPage() {
                 >
                   <Link to={`/v2/blog/${post.slug}`} className="block group">
                     <div className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
-                      <img
-                        src={post.coverImage}
-                        alt={post.coverAlt}
-                        width={post.coverWidth}
-                        height={post.coverHeight}
-                        loading="lazy"
-                        className="w-full h-auto aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
+                      {post.coverVideo ? (
+                        <AmbientLoopVideo
+                          src={post.coverVideo}
+                          poster={post.coverImage}
+                          ariaLabel={post.coverAlt}
+                          className="w-full h-auto aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      ) : (
+                        <img
+                          src={post.coverImage}
+                          alt={post.coverAlt}
+                          width={post.coverWidth}
+                          height={post.coverHeight}
+                          loading="lazy"
+                          className="w-full h-auto aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      )}
                     </div>
                   </Link>
                 </div>

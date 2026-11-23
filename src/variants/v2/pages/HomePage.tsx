@@ -31,12 +31,19 @@ export function HomePage() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
+    const video = videoRef.current;
     const prefersReduced = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+    }
     if (prefersReduced) {
       setVinylPaused(true);
-      videoRef.current?.pause();
+      video?.pause();
+    } else if (video) {
+      video.play().catch(() => {});
     }
   }, []);
 
@@ -47,6 +54,8 @@ export function HomePage() {
       return;
     }
     if (vinylPaused) {
+      video.defaultMuted = true;
+      video.muted = true;
       video.play().catch(() => {});
       setVinylPaused(false);
     } else {
@@ -181,6 +190,13 @@ export function HomePage() {
                 loop
                 muted
                 playsInline
+                onCanPlay={() => {
+                  const video = videoRef.current;
+                  if (!video || vinylPaused) return;
+                  video.defaultMuted = true;
+                  video.muted = true;
+                  video.play().catch(() => {});
+                }}
                 aria-hidden="true"
                 className="w-full h-full object-cover"
               />

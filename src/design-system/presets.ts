@@ -110,16 +110,79 @@ export const V2_DEFAULT_SETTINGS: DesignSystemSettings = {
   },
 };
 
+export const V3_DEFAULT_SETTINGS: DesignSystemSettings = {
+  fonts: {
+    headingFamily: 'Unna',
+    headingWeight: '700',
+    headingScale: 1,
+    headingLineHeight: 1.08,
+    headingLetterSpacing: -0.03,
+    headingTransform: 'none',
+    bodyFamily: 'DM Sans',
+    bodySize: 17,
+    bodyLineHeight: 1.55,
+    accentFamily: 'DM Sans',
+    accentLetterSpacing: 0.04,
+  },
+  colors: {
+    pageBg: '#d4e0e0',
+    surfaceAlt: '#c6d5d5',
+    accentPrimary: '#b1462e',
+    accentSecondary: '#471c13',
+    inkPrimary: '#1d2828',
+    inkSecondary: '#466060',
+    accentSoft: '#b2c4c4',
+  },
+  animations: {
+    style: 'fade',
+    speed: 'medium',
+    ambientMotion: true,
+  },
+  spacing: {
+    pageMaxWidth: 1440,
+    siteMargin: 48,
+    sectionPaddingY: 96,
+    elementGap: 24,
+  },
+  buttons: {
+    shape: 'pill',
+    fillStyle: 'solid',
+    borderWidth: 1,
+    paddingScale: 'generous',
+    textTransform: 'none',
+  },
+  forms: {
+    fieldStyle: 'outlined',
+    fieldRadius: 24,
+    borderWidth: 1,
+    fieldSpacing: 16,
+    labelTransform: 'none',
+  },
+  surfaces: {
+    cardRadius: 0,
+    borderWidth: 1,
+    elevation: 'none',
+  },
+};
+
+const DEFAULT_SETTINGS_BY_VARIANT: Record<VariantId, DesignSystemSettings> = {
+  v1: V1_DEFAULT_SETTINGS,
+  v2: V2_DEFAULT_SETTINGS,
+  v3: V3_DEFAULT_SETTINGS,
+};
+
+const VARIANT_LABELS: Record<VariantId, string> = {
+  v1: 'Variation 01 · Editorial & Minimal Grid',
+  v2: 'Variation 02 · Bold & Dynamic Editorial',
+  v3: 'Variation 03 · Fletcher Dark & Celadon',
+};
+
 export function getDefaultSettings(variantId: VariantId): DesignSystemSettings {
-  return structuredClone(
-    variantId === 'v1' ? V1_DEFAULT_SETTINGS : V2_DEFAULT_SETTINGS,
-  );
+  return structuredClone(DEFAULT_SETTINGS_BY_VARIANT[variantId]);
 }
 
 export function getVariantLabel(variantId: VariantId): string {
-  return variantId === 'v1'
-    ? 'Variation 01 · Editorial & Minimal Grid'
-    : 'Variation 02 · Bold & Dynamic Editorial';
+  return VARIANT_LABELS[variantId];
 }
 
 export interface FontPack {
@@ -141,6 +204,12 @@ export const FONT_PACKS: readonly FontPack[] = [
     name: 'Meriden Editorial',
     subtitle: 'Bodoni Moda + Plus Jakarta Sans + Oswald',
     fonts: { ...V2_DEFAULT_SETTINGS.fonts },
+  },
+  {
+    id: 'fletcher-atelier',
+    name: 'Fletcher Atelier',
+    subtitle: 'Unna + DM Sans',
+    fonts: { ...V3_DEFAULT_SETTINGS.fonts },
   },
   {
     id: 'swiss-neo-grotesk',
@@ -220,6 +289,11 @@ export const COLOR_PALETTES: readonly ColorPalettePreset[] = [
     id: 'meriden-vermilion',
     name: 'Meriden Vermilion',
     colors: { ...V2_DEFAULT_SETTINGS.colors },
+  },
+  {
+    id: 'fletcher-mineral',
+    name: 'Fletcher Mineral',
+    colors: { ...V3_DEFAULT_SETTINGS.colors },
   },
   {
     id: 'nordic-forest',

@@ -13,6 +13,14 @@ import { AviationPage as V2AviationPage } from './variants/v2/pages/AviationPage
 import { BlogPage as V2BlogPage } from './variants/v2/pages/BlogPage';
 import { BlogPostPage as V2BlogPostPage } from './variants/v2/pages/BlogPostPage';
 import { ContactPage as V2ContactPage } from './variants/v2/pages/ContactPage';
+import { V3Layout } from './variants/v3/V3Layout';
+import { HomePage as V3HomePage } from './variants/v3/pages/HomePage';
+import { AboutPage as V3AboutPage } from './variants/v3/pages/AboutPage';
+import { ServicesPage as V3ServicesPage } from './variants/v3/pages/ServicesPage';
+import { AviationPage as V3AviationPage } from './variants/v3/pages/AviationPage';
+import { BlogPage as V3BlogPage } from './variants/v3/pages/BlogPage';
+import { BlogPostPage as V3BlogPostPage } from './variants/v3/pages/BlogPostPage';
+import { ContactPage as V3ContactPage } from './variants/v3/pages/ContactPage';
 
 export default function App() {
   return (
@@ -37,6 +45,17 @@ export default function App() {
           <Route path="blog/:slug" element={<V2BlogPostPage />} />
           <Route path="contact" element={<V2ContactPage />} />
           <Route path="*" element={<V2HomePage />} />
+        </Route>
+
+        <Route path="/v3" element={<V3Layout />}>
+          <Route index element={<V3HomePage />} />
+          <Route path="about" element={<V3AboutPage />} />
+          <Route path="services" element={<V3ServicesPage />} />
+          <Route path="aviation-professionals" element={<V3AviationPage />} />
+          <Route path="blog" element={<V3BlogPage />} />
+          <Route path="blog/:slug" element={<V3BlogPostPage />} />
+          <Route path="contact" element={<V3ContactPage />} />
+          <Route path="*" element={<V3HomePage />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/" replace />} />

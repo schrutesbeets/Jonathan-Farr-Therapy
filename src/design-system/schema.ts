@@ -1,4 +1,4 @@
-export type VariantId = 'v1' | 'v2';
+export type VariantId = 'v1' | 'v2' | 'v3';
 
 export type HeadingWeight = '400' | '500' | '600' | '700';
 export type HeadingTransform = 'none' | 'uppercase' | 'capitalize';

@@ -133,7 +133,7 @@ export function parseImportedJson(
 
   if ('settings' in record && typeof record.settings === 'object' && record.settings !== null) {
     rawSettings = record.settings;
-    if (record.variantId === 'v1' || record.variantId === 'v2') {
+    if (record.variantId === 'v1' || record.variantId === 'v2' || record.variantId === 'v3') {
       importedFromVariant = record.variantId;
     }
   } else if (!('fonts' in record) && !('colors' in record) && !('buttons' in record)) {

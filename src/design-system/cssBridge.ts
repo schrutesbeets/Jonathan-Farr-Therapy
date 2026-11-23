@@ -130,21 +130,48 @@ export function buildCssVars(
     };
   }
 
+  if (variantId === 'v2') {
+    return {
+      ...sharedVars,
+      '--meriden-cream': colors.pageBg,
+      '--meriden-cream-tint': colors.surfaceAlt,
+      '--meriden-vermilion': colors.accentPrimary,
+      '--meriden-vermilion-deep': `color-mix(in oklab, ${colors.accentPrimary} 84%, black)`,
+      '--meriden-marigold': colors.accentSecondary,
+      '--meriden-butter': `color-mix(in oklab, ${colors.accentSecondary} 62%, white)`,
+      '--meriden-espresso': colors.inkPrimary,
+      '--meriden-terracotta': colors.inkSecondary,
+      '--meriden-sky': colors.accentSoft,
+      '--meriden-white': '#ffffff',
+      '--font-display': headingStack,
+      '--font-condensed': accentStack,
+      '--font-prose': bodyStack,
+    };
+  }
+
+  const cypressIsLight = relativeLuminance(colors.inkSecondary) > 0.45;
+  const onPine = inkIsLight ? colors.inkPrimary : colors.pageBg;
+  const pineSurface = inkIsLight ? colors.surfaceAlt : colors.inkPrimary;
+  const onCypress = cypressIsLight ? '#141413' : colors.pageBg;
+
   return {
     ...sharedVars,
-    '--meriden-cream': colors.pageBg,
-    '--meriden-cream-tint': colors.surfaceAlt,
-    '--meriden-vermilion': colors.accentPrimary,
-    '--meriden-vermilion-deep': `color-mix(in oklab, ${colors.accentPrimary} 84%, black)`,
-    '--meriden-marigold': colors.accentSecondary,
-    '--meriden-butter': `color-mix(in oklab, ${colors.accentSecondary} 62%, white)`,
-    '--meriden-espresso': colors.inkPrimary,
-    '--meriden-terracotta': colors.inkSecondary,
-    '--meriden-sky': colors.accentSoft,
-    '--meriden-white': '#ffffff',
+    '--fletcher-mist': colors.pageBg,
+    '--fletcher-mist-alt': colors.surfaceAlt,
+    '--fletcher-pine': pineSurface,
+    '--fletcher-on-pine': onPine,
+    '--fletcher-on-pine-muted': `color-mix(in oklab, ${onPine} 74%, ${pineSurface})`,
+    '--fletcher-cypress': colors.inkSecondary,
+    '--fletcher-on-cypress': onCypress,
+    '--fletcher-on-cypress-muted': `color-mix(in oklab, ${onCypress} 78%, ${colors.inkSecondary})`,
+    '--fletcher-rust': colors.accentPrimary,
+    '--fletcher-oxblood': colors.accentSecondary,
+    '--fletcher-on-rust': onAccent,
+    '--fletcher-border': colors.accentSoft,
+    '--fletcher-border-dark': `color-mix(in oklab, ${onPine} 22%, transparent)`,
     '--font-display': headingStack,
-    '--font-condensed': accentStack,
     '--font-prose': bodyStack,
+    '--font-meta': accentStack,
   };
 }
 
