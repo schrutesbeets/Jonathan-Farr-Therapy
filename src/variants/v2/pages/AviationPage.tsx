@@ -5,7 +5,7 @@ import {
   PRACTICE_CONFIG,
 } from '../data/siteContent';
 import { FaqAccordion } from '../components/FaqAccordion';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 const OFFICIAL_RESOURCES = [
   {
@@ -38,15 +38,15 @@ export function AviationPage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Full-Bleed Vermilion Aviation Hero */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-7 space-y-6">
             <div className="inline-flex items-center gap-2 font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               <Plane className="w-4 h-4" aria-hidden="true" />
               <span>PILOTS · AIR TRAFFIC CONTROL SPECIALISTS · FLIGHT ATTENDANTS</span>
             </div>
 
-            <h1 className="font-display type-hero text-white">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               Pilots are
               <br />
               people, too.
@@ -56,7 +56,7 @@ export function AviationPage() {
               You don’t have to choose between your career and your health.
             </p>
 
-            <p className="font-prose text-base sm:text-lg text-white/95 max-w-2xl leading-relaxed">
+            <p className="font-prose text-base sm:text-lg opacity-95 max-w-2xl leading-relaxed">
               Flying is a core part of your identity—and your livelihood.
               Whether you’ve been thinking about therapy while worried it could
               ground you, your medical application got deferred and you need a
@@ -79,7 +79,7 @@ export function AviationPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+            <figure className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/discovery-flight.jpg')}
                 alt="Jonathan Farr inside small aircraft cockpit wearing David Clark headset during a discovery flight"
@@ -96,8 +96,8 @@ export function AviationPage() {
       </section>
 
       {/* SECTION 2 — Aviation-Informed Care & Collaborative Documentation */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap">
           <div className="lg:col-span-7 space-y-5 reveal-on-scroll">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
               AVIATION-INFORMED COUNSELING · 12+ YEARS EXPERIENCE
@@ -128,7 +128,7 @@ export function AviationPage() {
 
           <aside
             aria-label="Official FAA & PMHC Resources"
-            className="lg:col-span-5 rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/75 p-7 sm:p-8 space-y-5 reveal-on-scroll"
+            className="lg:col-span-5 ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/75 p-7 sm:p-8 space-y-5 reveal-on-scroll"
           >
             <div className="flex items-center gap-2 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)] border-b border-[var(--meriden-vermilion)]/20 pb-3">
               <FileCheck2 className="w-4 h-4" aria-hidden="true" />
@@ -161,8 +161,8 @@ export function AviationPage() {
       </section>
 
       {/* SECTION 3 — Complete 5-Question Aviation FAQ Accordion */}
-      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto space-y-10">
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 ds-section">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-10">
           <div className="space-y-2 reveal-on-scroll">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
               FAA REPORTING, DIAGNOSIS &amp; MEDICATION

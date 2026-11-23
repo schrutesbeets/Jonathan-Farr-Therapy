@@ -1,24 +1,24 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { BLOG_POSTS } from '../data/blogPosts';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export function BlogPage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Full-Bleed Vermilion Writing Hero */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-6 space-y-6">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               ESSAYS &amp; REFLECTIONS · BY JONATHAN FARR, LMHC
             </p>
-            <h1 className="font-display type-hero text-white">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               Writing
               <br />
               &amp; Notes
             </h1>
-            <p className="font-prose text-lg sm:text-xl text-white/95 max-w-xl leading-relaxed">
+            <p className="font-prose text-lg sm:text-xl opacity-95 max-w-xl leading-relaxed">
               Stories about winning arguments without trying to win them,
               hitting wrong notes on a church Steinway, and flipping how you
               think about motivation and values.
@@ -26,7 +26,7 @@ export function BlogPage() {
           </div>
 
           <div className="lg:col-span-6">
-            <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+            <figure className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/oban-sunset.jpg')}
                 alt="Silhouetted tall ships in harbor at sunset in Oban, Scotland"
@@ -43,22 +43,22 @@ export function BlogPage() {
       </section>
 
       {/* SECTION 2 — Alternating Large Editorial Essay Cards (Meriden Podcast Cadence) */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto space-y-20">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container space-y-20">
           {BLOG_POSTS.map((post, idx) => {
             const reverse = idx % 2 === 1;
             return (
               <article
                 key={post.slug}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center border-b-2 border-[var(--meriden-vermilion)]/15 pb-16 last:border-b-0 last:pb-0 reveal-on-scroll"
+                className="grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center border-b-2 border-[var(--meriden-vermilion)]/15 pb-16 last:border-b-0 last:pb-0 reveal-on-scroll"
               >
                 <div
                   className={`lg:col-span-6 ${
                     reverse ? 'lg:order-2' : 'lg:order-1'
                   }`}
                 >
-                  <Link to={`/blog/${post.slug}`} className="block group">
-                    <div className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
+                  <Link to={`/v2/blog/${post.slug}`} className="block group">
+                    <div className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
                       <img
                         src={post.coverImage}
                         alt={post.coverAlt}
@@ -86,7 +86,7 @@ export function BlogPage() {
 
                   <h2 className="font-display type-h3 text-[var(--meriden-vermilion)]">
                     <Link
-                      to={`/blog/${post.slug}`}
+                      to={`/v2/blog/${post.slug}`}
                       className="hover:text-[var(--meriden-terracotta)] transition-colors no-underline"
                     >
                       {post.title}
@@ -99,7 +99,7 @@ export function BlogPage() {
 
                   <div className="pt-2">
                     <Link
-                      to={`/blog/${post.slug}`}
+                      to={`/v2/blog/${post.slug}`}
                       className="btn-pill-vermilion"
                     >
                       <span>Read Essay</span>

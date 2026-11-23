@@ -1,0 +1,763 @@
+/* Monochrome Design System Editor UI — Strictly isolated from site variant tokens */
+.ds-editor-root {
+  --ds-ui-bg: #ffffff;
+  --ds-ui-surface: #f5f5f5;
+  --ds-ui-surface-hover: #eaeaea;
+  --ds-ui-ink: #111111;
+  --ds-ui-muted: #555555;
+  --ds-ui-border: #d4d4d4;
+  --ds-ui-border-strong: #111111;
+  --ds-ui-font: 'Roboto', system-ui, -apple-system, sans-serif;
+  --ds-ui-mono: 'Roboto Mono', ui-monospace, monospace;
+}
+
+/* Fixed Bottom-Right Settings FAB (identical placement on v1 and v2) */
+.ds-fab {
+  position: fixed;
+  inset-block-end: 1.5rem;
+  inset-inline-end: 1.5rem;
+  z-index: 60;
+  inline-size: 3.25rem;
+  block-size: 3.25rem;
+  border-radius: 9999px;
+  background-color: var(--ds-ui-ink);
+  color: var(--ds-ui-bg);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 12px 28px -8px rgba(0, 0, 0, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.18s ease, background-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.ds-fab:hover {
+  transform: translateY(-2px);
+  background-color: #262626;
+  box-shadow:
+    0 16px 34px -8px rgba(0, 0, 0, 0.42),
+    0 4px 8px rgba(0, 0, 0, 0.24);
+}
+
+.ds-fab:active {
+  transform: scale(0.96);
+}
+
+.ds-fab:focus-visible {
+  outline: 3px solid var(--ds-ui-ink);
+  outline-offset: 3px;
+}
+
+.ds-fab-icon {
+  inline-size: 1.35rem;
+  block-size: 1.35rem;
+  transition: transform 0.3s ease;
+}
+
+.ds-fab[aria-expanded="true"] .ds-fab-icon {
+  transform: rotate(60deg);
+}
+
+.ds-fab-badge {
+  position: absolute;
+  inset-block-start: 0.2rem;
+  inset-inline-end: 0.2rem;
+  inline-size: 0.6rem;
+  block-size: 0.6rem;
+  border-radius: 9999px;
+  background-color: #e04f26;
+  border: 1.5px solid #ffffff;
+}
+
+/* Non-Modal Top-Layer Slide-Out Drawer (<div role="dialog" popover="manual">) */
+/* Notice: display is NEVER set unconditionally on .ds-drawer */
+.ds-drawer {
+  position: fixed;
+  inset-block: 0;
+  inset-inline-start: auto;
+  inset-inline-end: 0;
+  inline-size: min(26.5rem, 100dvw);
+  max-inline-size: 100dvw;
+  block-size: 100dvh;
+  max-block-size: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-inline-start: 1px solid var(--ds-ui-border-strong);
+  background-color: var(--ds-ui-bg);
+  color: var(--ds-ui-ink);
+  font-family: var(--ds-ui-font);
+  font-size: 0.875rem;
+  line-height: 1.45;
+  box-shadow: -16px 0 42px -12px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  flex-direction: column;
+  opacity: 0;
+  transition-property: opacity, translate, display, overlay;
+  transition-duration: 0.28s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  transition-behavior: allow-discrete;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-drawer {
+    translate: 100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-drawer {
+    transition-duration: 0.1s;
+  }
+}
+
+.ds-drawer:is(:popover-open, .\:popover-open):where(:not([data-closing])) {
+  display: flex;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-drawer:is(:popover-open, .\:popover-open):where(:not([data-closing])) {
+    translate: 0 0;
+  }
+}
+
+@starting-style {
+  .ds-drawer:is(:popover-open, .\:popover-open):where(:not([data-closing])) {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @starting-style {
+    .ds-drawer:is(:popover-open, .\:popover-open):where(:not([data-closing])) {
+      translate: 100% 0;
+    }
+  }
+}
+
+.ds-drawer[data-closing] {
+  display: flex;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-drawer[data-closing] {
+    translate: 100% 0;
+  }
+}
+
+.ds-drawer::backdrop {
+  background: transparent;
+  pointer-events: none;
+}
+
+/* Drawer Header */
+.ds-drawer-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--ds-ui-border);
+  background-color: var(--ds-ui-surface);
+  flex-shrink: 0;
+}
+
+.ds-drawer-header-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.ds-drawer-overline {
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-ui-muted);
+  margin: 0 0 0.2rem;
+}
+
+.ds-editor-root .ds-drawer-title {
+  font-family: var(--ds-ui-font);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.2;
+  text-transform: none;
+  color: var(--ds-ui-ink);
+  margin: 0;
+}
+
+.ds-drawer-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.ds-variant-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.5rem;
+  background-color: var(--ds-ui-bg);
+  border: 1px solid var(--ds-ui-border);
+  color: var(--ds-ui-ink);
+}
+
+.ds-toolbar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ds-text-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--ds-ui-bg);
+  border: 1px solid var(--ds-ui-border);
+  color: var(--ds-ui-ink);
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.55rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ds-text-btn:hover {
+  border-color: var(--ds-ui-border-strong);
+  background-color: var(--ds-ui-surface-hover);
+}
+
+.ds-text-btn:focus-visible,
+.ds-icon-btn:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: 2px;
+}
+
+.ds-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 2rem;
+  block-size: 2rem;
+  background-color: var(--ds-ui-bg);
+  border: 1px solid var(--ds-ui-border);
+  color: var(--ds-ui-ink);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.ds-icon-btn:hover {
+  background-color: var(--ds-ui-ink);
+  border-color: var(--ds-ui-ink);
+  color: var(--ds-ui-bg);
+}
+
+/* Scrollable Accordions Body */
+.ds-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.ds-accordion-group > details {
+  border-bottom: 1px solid var(--ds-ui-border);
+}
+
+.ds-accordion-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background-color: var(--ds-ui-bg);
+  color: var(--ds-ui-ink);
+  font-family: var(--ds-ui-font);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.ds-accordion-summary::-webkit-details-marker {
+  display: none;
+}
+
+.ds-accordion-summary:hover {
+  background-color: var(--ds-ui-surface);
+}
+
+.ds-accordion-summary:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: -2px;
+}
+
+.ds-acc-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.ds-acc-chevron {
+  inline-size: 1rem;
+  block-size: 1rem;
+  flex-shrink: 0;
+  color: var(--ds-ui-muted);
+  rotate: -90deg;
+}
+
+details[open] > .ds-accordion-summary .ds-acc-chevron {
+  rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-acc-chevron {
+    transition: rotate 0.2s ease;
+  }
+}
+
+.ds-acc-count {
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  color: var(--ds-ui-muted);
+  background-color: var(--ds-ui-surface);
+  border: 1px solid var(--ds-ui-border);
+  padding: 0.1rem 0.4rem;
+}
+
+/* Smooth Accordion Panel Transition (accordion guide pattern) */
+.ds-accordion-group > details::details-content {
+  interpolate-size: allow-keywords;
+  overflow: clip;
+  contain: layout;
+}
+
+.ds-accordion-group > details:not([open])::details-content {
+  block-size: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ds-accordion-group > details::details-content {
+    transition-property: block-size, content-visibility, display;
+    transition-duration: 0.25s;
+    transition-timing-function: ease-in-out;
+    transition-behavior: allow-discrete;
+  }
+}
+
+.ds-acc-content {
+  padding: 0.85rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: var(--ds-ui-bg);
+}
+
+/* Controls & Field Primitives inside Drawer */
+.ds-control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.ds-control-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.ds-control-label {
+  font-family: var(--ds-ui-font);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--ds-ui-ink);
+}
+
+.ds-control-value {
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  color: var(--ds-ui-muted);
+}
+
+.ds-select {
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  font-family: var(--ds-ui-font);
+  font-size: 0.8125rem;
+  color: var(--ds-ui-ink);
+  background-color: var(--ds-ui-bg);
+  border: 1px solid var(--ds-ui-border);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.ds-select:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: 1px;
+}
+
+.ds-range {
+  width: 100%;
+  accent-color: var(--ds-ui-ink);
+  cursor: pointer;
+}
+
+@supports not (accent-color: #111111) {
+  .ds-range {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+
+  .ds-range::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: var(--ds-ui-border);
+    border-radius: 9999px;
+  }
+
+  .ds-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: var(--ds-ui-ink);
+    margin-top: -5px;
+    cursor: pointer;
+  }
+
+  .ds-range::-moz-range-track {
+    width: 100%;
+    height: 4px;
+    background: var(--ds-ui-border);
+    border-radius: 9999px;
+  }
+
+  .ds-range::-moz-range-thumb {
+    height: 14px;
+    width: 14px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--ds-ui-ink);
+    cursor: pointer;
+  }
+}
+
+.ds-segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  border: 1px solid var(--ds-ui-border);
+  background-color: var(--ds-ui-surface);
+}
+
+.ds-seg-btn {
+  padding: 0.4rem 0.45rem;
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ds-ui-muted);
+  background: transparent;
+  border: 0;
+  border-inline-end: 1px solid var(--ds-ui-border);
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.ds-seg-btn:last-child {
+  border-inline-end: 0;
+}
+
+.ds-seg-btn[aria-pressed="true"] {
+  background-color: var(--ds-ui-ink);
+  color: var(--ds-ui-bg);
+  font-weight: 500;
+}
+
+.ds-seg-btn:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: -2px;
+}
+
+/* Preset Pack Cards */
+.ds-pack-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.ds-pack-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.25rem;
+  padding: 0.55rem 0.65rem;
+  text-align: left;
+  background-color: var(--ds-ui-surface);
+  border: 1px solid var(--ds-ui-border);
+  color: var(--ds-ui-ink);
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ds-pack-btn:hover {
+  border-color: var(--ds-ui-border-strong);
+  background-color: var(--ds-ui-bg);
+}
+
+.ds-pack-btn.is-active {
+  border-color: var(--ds-ui-ink);
+  background-color: var(--ds-ui-bg);
+  box-shadow: inset 0 0 0 1px var(--ds-ui-ink);
+}
+
+.ds-pack-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ds-ui-ink);
+}
+
+.ds-pack-sub {
+  font-family: var(--ds-ui-mono);
+  font-size: 0.625rem;
+  color: var(--ds-ui-muted);
+  line-height: 1.3;
+}
+
+.ds-swatch-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  forced-color-adjust: none;
+}
+
+.ds-swatch-dot {
+  inline-size: 0.75rem;
+  block-size: 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  forced-color-adjust: none;
+}
+
+/* Color Token Row */
+.ds-color-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.35rem 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.ds-color-row:last-child {
+  border-bottom: 0;
+}
+
+.ds-color-inputs {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.ds-color-picker {
+  inline-size: 2rem;
+  block-size: 1.75rem;
+  padding: 0;
+  border: 1px solid var(--ds-ui-border);
+  background: transparent;
+  cursor: pointer;
+  forced-color-adjust: none;
+}
+
+.ds-hex-input {
+  inline-size: 5.15rem;
+  padding: 0.25rem 0.4rem;
+  font-family: var(--ds-ui-mono);
+  font-size: 0.75rem;
+  color: var(--ds-ui-ink);
+  background-color: var(--ds-ui-surface);
+  border: 1px solid var(--ds-ui-border);
+  text-transform: lowercase;
+}
+
+.ds-hex-input:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: 1px;
+}
+
+.ds-checkbox-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--ds-ui-border);
+  background-color: var(--ds-ui-surface);
+  cursor: pointer;
+}
+
+.ds-checkbox-row input[type="checkbox"] {
+  inline-size: 1rem;
+  block-size: 1rem;
+  accent-color: var(--ds-ui-ink);
+  cursor: pointer;
+}
+
+.ds-section-divider {
+  border-top: 1px solid var(--ds-ui-border);
+  padding-top: 0.75rem;
+  margin-top: 0.15rem;
+}
+
+.ds-subhead {
+  font-family: var(--ds-ui-mono);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ds-ui-muted);
+  margin: 0 0 0.5rem;
+}
+
+/* Live Form Preview inside Forms Accordion (inherits active site theme tokens!) */
+.ds-form-preview-wrap {
+  padding: 1rem;
+  background-color: var(--ds-page-bg, #ffffff);
+  color: var(--ds-ink-primary, #141413);
+  border: var(--ds-card-border-width, 1px) solid var(--ds-accent-soft, #d4d4d4);
+  border-radius: var(--ds-card-radius, 4px);
+  box-shadow: var(--ds-card-shadow, none);
+}
+
+.ds-form-preview-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: var(--ds-font-accent, sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: var(--ds-accent-ls, 0.08em);
+  text-transform: var(--ds-btn-transform, uppercase);
+  border-radius: var(--ds-btn-radius, 4px);
+  border-width: var(--ds-btn-border-width, 1px);
+  border-style: solid;
+  padding: 0.55rem 1rem;
+  cursor: pointer;
+}
+
+[data-ds-btn-fill="solid"] .ds-form-preview-btn {
+  background-color: var(--ds-accent-primary, #e04f26);
+  border-color: var(--ds-accent-primary, #e04f26);
+  color: var(--ds-on-accent, #ffffff);
+}
+
+[data-ds-btn-fill="outline"] .ds-form-preview-btn {
+  background-color: transparent;
+  border-color: var(--ds-accent-primary, #e04f26);
+  color: var(--ds-accent-primary, #e04f26);
+}
+
+/* Sticky Portability Footer */
+.ds-drawer-footer {
+  border-top: 1px solid var(--ds-ui-border-strong);
+  background-color: var(--ds-ui-surface);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  flex-shrink: 0;
+}
+
+.ds-footer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.ds-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.65rem;
+  font-family: var(--ds-ui-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  background-color: var(--ds-ui-bg);
+  color: var(--ds-ui-ink);
+  border: 1px solid var(--ds-ui-border-strong);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.ds-action-btn:hover {
+  background-color: var(--ds-ui-ink);
+  color: var(--ds-ui-bg);
+}
+
+.ds-action-btn.is-primary {
+  background-color: var(--ds-ui-ink);
+  color: var(--ds-ui-bg);
+}
+
+.ds-action-btn.is-primary:hover {
+  background-color: #2c2c2c;
+}
+
+.ds-action-btn:focus-visible {
+  outline: 2px solid var(--ds-ui-ink);
+  outline-offset: 2px;
+}
+
+.ds-status-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.5rem 0.65rem;
+  font-size: 0.75rem;
+  background-color: var(--ds-ui-bg);
+  border: 1px solid var(--ds-ui-border-strong);
+  color: var(--ds-ui-ink);
+}
+
+.ds-status-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.ds-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

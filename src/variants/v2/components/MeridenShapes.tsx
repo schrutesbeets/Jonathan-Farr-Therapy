@@ -1,4 +1,4 @@
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 interface ShapeProps {
   color?: string;

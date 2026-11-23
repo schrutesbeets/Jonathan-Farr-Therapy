@@ -8,26 +8,26 @@ import {
   MeridenMosaicStrip,
   ScallopBadgeShape,
 } from '../components/MeridenShapes';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export function AboutPage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Full-Bleed Vermilion About Hero ("I was an imposter, too.") */}
-      <section className="bg-[var(--meriden-vermilion)] text-[var(--meriden-white)] px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-start">
           <div className="lg:col-span-7 space-y-6">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               ABOUT JONATHAN FARR, LMHC // SIGNAL OVER NOISE
             </p>
 
-            <h1 className="font-display type-hero text-white">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               I was an
               <br />
               imposter, too.
             </h1>
 
-            <div className="space-y-4 font-prose text-base sm:text-lg text-white/95 leading-relaxed max-w-2xl">
+            <div className="space-y-4 font-prose text-base sm:text-lg opacity-95 leading-relaxed max-w-2xl">
               <p>
                 I have a bachelor’s degree in film production, but that was the
                 beginning of my own imposter syndrome. Directors had “vision,” I
@@ -75,7 +75,7 @@ export function AboutPage() {
                 />
               </div>
 
-              <figure className="relative z-10 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+              <figure className="relative z-10 overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
                 <img
                   src={assetUrl('media/jonathan-glasses.jpg')}
                   alt="Jonathan Farr portrait in April 2026 wearing clear-frame glasses and patterned shirt"
@@ -89,7 +89,7 @@ export function AboutPage() {
               </figure>
             </div>
 
-            <figure className="sm:w-3/4 sm:ml-auto overflow-hidden rounded-sm border-4 border-[var(--meriden-cream)] shadow-xl bg-[var(--meriden-cream)] text-[var(--meriden-espresso)]">
+            <figure className="sm:w-3/4 sm:ml-auto overflow-hidden ds-media-frame border-4 border-[var(--meriden-cream)] bg-[var(--meriden-cream)] text-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/jonathan-1997.jpg')}
                 alt="Jonathan Farr in 1997 filming with a camera in a college dorm room"
@@ -107,8 +107,8 @@ export function AboutPage() {
       </section>
 
       {/* SECTION 2 — Warm Cream Uniqueness & Clinical Philosophy */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-5 reveal-on-scroll">
             <img
               src={assetUrl('media/jonathan-seated.jpg')}
@@ -116,7 +116,7 @@ export function AboutPage() {
               width={1066}
               height={1600}
               loading="lazy"
-              className="w-full h-auto rounded-sm shadow-xl object-cover aspect-[4/5]"
+              className="w-full h-auto ds-media-frame object-cover aspect-[4/5]"
             />
           </div>
 
@@ -155,19 +155,19 @@ export function AboutPage() {
       </section>
 
       {/* SECTION 3 — Vermilion Mutual Fit Matrix */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-7xl mx-auto space-y-12">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container space-y-12">
           <div className="max-w-2xl space-y-2 reveal-on-scroll">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               CLIENT FIT // NO SURPRISES
             </p>
-            <h2 className="font-display type-h2 text-white">
+            <h2 className="font-display type-h2 text-[var(--ds-on-accent)]">
               Right Fit Matters.
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="rounded-2xl bg-[var(--meriden-cream)] text-[var(--meriden-espresso)] p-7 sm:p-10 space-y-5 reveal-on-scroll">
+          <div className="grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
+            <article className="ds-card border-transparent bg-[var(--meriden-cream)] text-[var(--meriden-espresso)] p-7 sm:p-10 space-y-5 reveal-on-scroll">
               <h3 className="font-display-quote text-2xl sm:text-3xl text-[var(--meriden-terracotta)]">
                 I work best with clients who…
               </h3>
@@ -184,8 +184,8 @@ export function AboutPage() {
               </ul>
             </article>
 
-            <article className="rounded-2xl border-2 border-white/40 bg-[var(--meriden-terracotta)]/25 text-white p-7 sm:p-10 space-y-5 reveal-on-scroll">
-              <h3 className="font-display-quote text-2xl sm:text-3xl text-white">
+            <article className="ds-card border-white/40 bg-[var(--meriden-terracotta)]/25 text-[var(--ds-on-accent)] p-7 sm:p-10 space-y-5 reveal-on-scroll">
+              <h3 className="font-display-quote text-2xl sm:text-3xl text-[var(--ds-on-accent)]">
                 I’m probably not the therapist for you if…
               </h3>
               <ul className="space-y-3.5 list-none p-0 m-0 font-prose text-base text-[var(--meriden-cream)]">
@@ -205,8 +205,8 @@ export function AboutPage() {
       </section>
 
       {/* SECTION 4 — Education & Licensure Ledger */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-5xl mx-auto space-y-10 reveal-on-scroll">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="max-w-[min(64rem,var(--ds-page-max-width))] mx-auto space-y-10 reveal-on-scroll">
           <div className="flex flex-wrap items-end justify-between gap-4 border-b-2 border-[var(--meriden-vermilion)]/20 pb-5">
             <div>
               <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
@@ -228,11 +228,11 @@ export function AboutPage() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 ds-grid-gap">
             {EDUCATION_CREDENTIALS.map((edu) => (
               <div
                 key={edu.year}
-                className="rounded-xl border-2 border-[var(--meriden-vermilion)]/20 bg-[var(--meriden-cream-tint)]/55 p-6 space-y-1.5"
+                className="ds-card border-[var(--meriden-vermilion)]/20 bg-[var(--meriden-cream-tint)]/55 p-6 space-y-1.5"
               >
                 <p className="font-condensed text-sm uppercase tracking-widest text-[var(--meriden-vermilion)]">
                   {edu.year}

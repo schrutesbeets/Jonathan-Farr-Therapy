@@ -22,7 +22,7 @@ import {
   StarburstShape,
 } from '../components/MeridenShapes';
 import { FaqAccordion } from '../components/FaqAccordion';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export function HomePage() {
   const [autocrossView, setAutocrossView] = useState<'car' | 'track'>('car');
@@ -60,11 +60,11 @@ export function HomePage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Full-Bleed Vermilion Hero (Meriden Section 1 cadence) */}
-      <section className="bg-[var(--meriden-vermilion)] text-[var(--meriden-white)] px-5 sm:px-10 pt-8 pb-16 sm:pt-12 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           {/* Asymmetric Editorial Portrait Frame */}
           <div className="lg:col-span-5 relative">
-            <div className="relative overflow-hidden rounded-sm bg-[var(--meriden-terracotta)]/20 shadow-2xl">
+            <div className="relative overflow-hidden ds-media-frame bg-[var(--meriden-terracotta)]/20">
               <img
                 src={assetUrl('media/jonathan-hero.jpg')}
                 alt="Jonathan Farr, LMHC, smiling in a blue sweater and striped tie"
@@ -93,7 +93,7 @@ export function HomePage() {
               MASSACHUSETTS ONLINE TELEHEALTH · LMHC #{PRACTICE_CONFIG.licenseNumber}
             </p>
 
-            <h1 className="font-display type-hero text-[var(--meriden-white)]">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               Jonathan
               <br />
               Farr
@@ -110,7 +110,7 @@ export function HomePage() {
               ))}
             </ul>
 
-            <p className="font-prose text-lg sm:text-xl text-[var(--meriden-white)]/95 max-w-xl leading-relaxed">
+            <p className="font-prose text-lg sm:text-xl opacity-95 max-w-xl leading-relaxed">
               Online therapy in Massachusetts for high-achievers spinning on the
               broken record of imposter syndrome.
             </p>
@@ -126,7 +126,7 @@ export function HomePage() {
                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
               </a>
               <Link
-                to="/about"
+                to="/v2/about"
                 className="font-condensed uppercase tracking-widest text-sm text-[var(--meriden-cream)] underline underline-offset-8 hover:text-white transition-colors px-2 py-2"
               >
                 Why “I Was an Imposter, Too” →
@@ -137,8 +137,8 @@ export function HomePage() {
       </section>
 
       {/* SECTION 2 — Warm Cream Floating-Scallop Manifesto + Vinyl Loop */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-5xl mx-auto relative flex flex-col items-center text-center reveal-on-scroll">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="max-w-[min(64rem,var(--ds-page-max-width))] mx-auto relative flex flex-col items-center text-center reveal-on-scroll">
           <div
             className="relative w-full py-10 sm:py-16 flex items-center justify-center"
           >
@@ -171,7 +171,7 @@ export function HomePage() {
           </div>
 
           {/* "Broken Record" Vinyl Loop Card with Accessible Pause/Play Toggle */}
-          <div className="mt-10 w-full max-w-4xl rounded-2xl bg-[var(--meriden-cream-tint)] border-2 border-[var(--meriden-vermilion)]/20 p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 gap-6 items-center text-left">
+          <div className="mt-10 w-full max-w-4xl ds-card bg-[var(--meriden-cream-tint)] border-[var(--meriden-vermilion)]/20 p-6 sm:p-8 grid grid-cols-1 md:grid-cols-12 ds-grid-gap items-center text-left">
             <div className="md:col-span-5 relative overflow-hidden rounded-xl bg-[var(--meriden-espresso)] aspect-[4/3]">
               <video
                 ref={videoRef}
@@ -222,8 +222,8 @@ export function HomePage() {
       </section>
 
       {/* SECTION 3 — 3-Column Graphic Method (Starburst / Scallop / Ring) */}
-      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-7xl mx-auto space-y-14">
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 ds-section">
+        <div className="ds-container space-y-14">
           <div className="text-center space-y-2 reveal-on-scroll">
             <p className="font-condensed text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
               WHY PRIVATE-PAY · MY APPROACH
@@ -233,7 +233,7 @@ export function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 ds-grid-gap">
             {METHOD_PILLARS.map((pillar) => (
               <article
                 key={pillar.id}
@@ -275,7 +275,7 @@ export function HomePage() {
 
           {/* 6 Populations Who Thrive Here */}
           <div className="pt-8 reveal-on-scroll">
-            <div className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-6 sm:p-10 space-y-6">
+            <div className="ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-6 sm:p-10 space-y-6">
               <div className="flex flex-wrap items-end justify-between gap-4 border-b border-[var(--meriden-vermilion)]/20 pb-4">
                 <div>
                   <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
@@ -286,7 +286,7 @@ export function HomePage() {
                   </h3>
                 </div>
                 <Link
-                  to="/services"
+                  to="/v2/services"
                   className="font-condensed text-xs uppercase tracking-widest text-[var(--meriden-vermilion)] hover:text-[var(--meriden-terracotta)] underline underline-offset-4"
                 >
                   Explore Services &amp; Out-of-Network Checker →
@@ -311,8 +311,8 @@ export function HomePage() {
       </section>
 
       {/* SECTION 4 — Asymmetric Poster Feature: The Autocross Limit Metaphor */}
-      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-cream)] border-t-2 border-[var(--meriden-vermilion)]/15 ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-5 space-y-6 reveal-on-scroll">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.2em] text-[var(--meriden-terracotta)]">
               THE AUTOCROSS PRINCIPLE · GRIP VS. SPINOUT
@@ -351,14 +351,14 @@ export function HomePage() {
                     : 'View Autocross Car #99'}
                 </span>
               </button>
-              <Link to="/about" className="btn-pill-solid">
+              <Link to="/v2/about" className="btn-pill-solid">
                 <span>About Jonathan</span>
               </Link>
             </div>
           </div>
 
           <div className="lg:col-span-7 reveal-on-scroll">
-            <figure className="relative overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-xl">
+            <figure className="relative overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               {autocrossView === 'car' ? (
                 <img
                   src={assetUrl('media/autocross-car.jpg')}
@@ -405,9 +405,9 @@ export function HomePage() {
       {/* SECTION 5 — Interactive Vermilion "Tipping Point" Carousel (Meriden Bright Band) */}
       <section
         aria-label="Client Tipping Points"
-        className="bg-[var(--meriden-vermilion)] text-[var(--meriden-white)] px-5 sm:px-10 py-20 sm:py-28"
+        className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section"
       >
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-[min(64rem,var(--ds-page-max-width))] mx-auto space-y-8">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/25 pb-4">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               THE TIPPING POINT // WHY PEOPLE FINALLY REACH OUT
@@ -421,7 +421,7 @@ export function HomePage() {
                   className={`font-condensed text-xs uppercase tracking-wider px-3 py-1 rounded-full border transition-colors cursor-pointer ${
                     idx === activeTippingIdx
                       ? 'bg-white text-[var(--meriden-vermilion)] border-white'
-                      : 'border-white/50 text-white hover:border-white'
+                      : 'border-white/50 text-[var(--ds-on-accent)] hover:border-white'
                   }`}
                 >
                   {tp.tag}
@@ -431,7 +431,7 @@ export function HomePage() {
           </div>
 
           <div className="min-h-[14rem] flex flex-col justify-center space-y-5">
-            <blockquote className="font-display-quote text-2xl sm:text-4xl lg:text-5xl text-white leading-tight">
+            <blockquote className="font-display-quote text-2xl sm:text-4xl lg:text-5xl text-[var(--ds-on-accent)] leading-tight">
               {currentTipping.quote}
             </blockquote>
             <p className="font-prose text-base sm:text-lg text-[var(--meriden-cream)] max-w-2xl">
@@ -480,8 +480,8 @@ export function HomePage() {
       <MeridenMosaicStrip />
 
       {/* SECTION 7 — Complete 8-Question Native FAQ Accordion + Closing Callout */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-4xl mx-auto space-y-10">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-10">
           <div className="space-y-2 reveal-on-scroll">
             <p className="font-condensed text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
               QUESTIONS BEFORE YOU BOOK
@@ -496,9 +496,9 @@ export function HomePage() {
       </section>
 
       {/* Closing Bold Vermilion Banner */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 py-20 sm:py-24 text-center">
-        <div className="max-w-4xl mx-auto space-y-6 reveal-on-scroll">
-          <h2 className="font-display type-h2 text-white">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section text-center">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-6 reveal-on-scroll">
+          <h2 className="font-display type-h2 text-[var(--ds-on-accent)]">
             Your inner voice sucks.
             <br />
             It’s time to change it.

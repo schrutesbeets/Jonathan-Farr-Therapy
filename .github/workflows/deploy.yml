@@ -1,10 +1,12 @@
-name: Deploy All Variations to GitHub Pages
+name: Deploy Consolidated Variations to GitHub Pages
 
 on:
   push:
     branches:
       - main
-      - v2-meriden-bold
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -20,58 +22,42 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Variation 1 (main)
+      - name: Checkout Branch
         uses: actions/checkout@v4
-        with:
-          ref: main
-          path: _v1
-
-      - name: Checkout Variation 2 (v2-meriden-bold)
-        uses: actions/checkout@v4
-        with:
-          ref: v2-meriden-bold
-          path: _v2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: Build Variation 1 (/v1/)
-        working-directory: _v1
-        env:
-          VITE_BASE_PATH: /Jonathan-Farr-Therapy/v1/
-        run: |
-          npm ci
-          npm run build
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Build Variation 2 (/v2/)
-        working-directory: _v2
+      - name: Build Consolidated App
         env:
-          VITE_BASE_PATH: /Jonathan-Farr-Therapy/v2/
-        run: |
-          npm ci
-          npm run build
+          VITE_BASE_PATH: /Jonathan-Farr-Therapy/
+        run: npm run build
 
-      - name: Assemble Multi-Variation Site
+      - name: Assemble Static SPA Subpaths
         run: |
-          mkdir -p _site/v1 _site/v2
-          cp -r _v1/dist/. _site/v1/
-          cp _site/v1/index.html _site/v1/404.html
-          cp -r _v2/dist/. _site/v2/
-          cp _site/v2/index.html _site/v2/404.html
-          cp _v2/.github/pages-switcher.html _site/index.html
-          cp _v2/.github/pages-switcher.html _site/404.html
+          mkdir -p _site _site/v1 _site/v2
+          cp -r dist/. _site/
+          cp _site/index.html _site/404.html
+          cp _site/index.html _site/v1/index.html
+          cp _site/index.html _site/v2/index.html
 
       - name: Setup GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/configure-pages@v5
 
       - name: Upload artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
 
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

@@ -1,23 +1,23 @@
 import { ArrowUpRight, Calendar, Lock, Mail, MessageSquare, Phone } from 'lucide-react';
 import { PRACTICE_CONFIG } from '../data/siteContent';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export function ContactPage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Full-Bleed Vermilion Contact Hero */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-6 space-y-6">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               ACCEPTING NEW CLIENTS · {PRACTICE_CONFIG.availability.toUpperCase()}
             </p>
-            <h1 className="font-display type-hero text-white">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               Let’s
               <br />
               Chat.
             </h1>
-            <p className="font-prose text-lg sm:text-xl text-white/95 max-w-xl leading-relaxed">
+            <p className="font-prose text-lg sm:text-xl opacity-95 max-w-xl leading-relaxed">
               Schedule a free, 15-minute consultation to talk through what
               brought you here and make sure we’re the right fit.
             </p>
@@ -43,7 +43,7 @@ export function ContactPage() {
           </div>
 
           <div className="lg:col-span-6">
-            <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+            <figure className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/runway-28.jpg')}
                 alt="Runway 28 stretching toward the horizon at twilight"
@@ -57,9 +57,9 @@ export function ContactPage() {
       </section>
 
       {/* SECTION 2 — Contact & Scheduling Paths */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <article className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 space-y-4 reveal-on-scroll">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
+          <article className="ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 space-y-4 reveal-on-scroll">
             <div className="flex items-center gap-2 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
               <Calendar className="w-4 h-4" aria-hidden="true" />
               <span>STEP 01 // FREE INTRO CALL</span>
@@ -95,7 +95,7 @@ export function ContactPage() {
             </div>
           </article>
 
-          <article className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 space-y-4 reveal-on-scroll">
+          <article className="ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 space-y-4 reveal-on-scroll">
             <div className="flex items-center gap-2 font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-vermilion)]">
               <MessageSquare className="w-4 h-4" aria-hidden="true" />
               <span>STEP 02 // DIRECT &amp; PORTAL</span>

@@ -1,0 +1,184 @@
+/* Scoped Monochrome Material Design Switcher Hub */
+.switcher-shell {
+  --md-bg: #fafafa;
+  --md-surface: #ffffff;
+  --md-surface-variant: #f4f4f4;
+  --md-ink: #111111;
+  --md-ink-muted: #555555;
+  --md-outline: #d4d4d4;
+  --md-outline-strong: #111111;
+
+  min-height: 100vh;
+  background-color: var(--md-bg);
+  color: var(--md-ink);
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+}
+
+.switcher-shell header {
+  background-color: var(--md-surface);
+  border-bottom: 1px solid var(--md-outline);
+  padding: 3rem 1.5rem 2.5rem;
+}
+
+.switcher-container {
+  max-width: 64rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.switcher-overline {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--md-ink-muted);
+  margin: 0 0 0.75rem;
+}
+
+.switcher-shell h1 {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-size: clamp(1.75rem, 1.25rem + 1.75vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.75rem;
+  color: var(--md-ink);
+}
+
+.switcher-subtitle {
+  max-width: 42rem;
+  font-size: 1rem;
+  color: var(--md-ink-muted);
+  margin: 0;
+}
+
+.switcher-shell main {
+  flex: 1;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.switcher-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1.5rem;
+}
+
+.switcher-card {
+  background-color: var(--md-surface);
+  border: 1px solid var(--md-outline);
+  border-radius: 0;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.switcher-card:hover {
+  border-color: var(--md-outline-strong);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.switcher-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.switcher-chip {
+  display: inline-block;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--md-ink);
+  background-color: var(--md-surface-variant);
+  border: 1px solid var(--md-outline);
+  border-radius: 0;
+  padding: 0.25rem 0.6rem;
+}
+
+.switcher-chip.is-custom {
+  background-color: var(--md-ink);
+  border-color: var(--md-ink);
+  color: var(--md-surface);
+}
+
+.switcher-shell h2 {
+  font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  font-size: 1.375rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  margin: 0 0 0.625rem;
+  color: var(--md-ink);
+}
+
+.switcher-card-desc {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: var(--md-ink-muted);
+}
+
+.switcher-card-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--md-outline);
+}
+
+.switcher-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid var(--md-outline-strong);
+  border-radius: 0;
+  background-color: var(--md-ink);
+  color: var(--md-surface);
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.switcher-button:hover,
+.switcher-button:focus-visible {
+  background-color: var(--md-surface);
+  color: var(--md-ink);
+}
+
+.switcher-button:focus-visible {
+  outline: 2px solid var(--md-ink);
+  outline-offset: 2px;
+}
+
+.switcher-path-meta {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--md-ink-muted);
+}
+
+.switcher-shell footer {
+  border-top: 1px solid var(--md-outline);
+  background-color: var(--md-surface);
+  padding: 1.25rem 1.5rem;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--md-ink-muted);
+}

@@ -195,7 +195,7 @@ export const HOME_FAQS: FaqItem[] = [
         {
           text: 'right now',
           bold: true,
-          href: '/services',
+          href: '/v2/services',
         },
         {
           text: ' if you have out-of-network benefits!',
@@ -229,7 +229,7 @@ export const HOME_FAQS: FaqItem[] = [
         {
           text: 'Get in touch',
           bold: true,
-          href: '/contact',
+          href: '/v2/contact',
         },
         { text: '!' },
       ],

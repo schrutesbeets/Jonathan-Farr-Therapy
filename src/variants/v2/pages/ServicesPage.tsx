@@ -2,25 +2,25 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Receipt, Video } from 'lucide-react';
 import { AVIATION_LINKS, PRACTICE_CONFIG } from '../data/siteContent';
 import { ScallopBadgeShape, StarburstShape } from '../components/MeridenShapes';
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export function ServicesPage() {
   return (
     <div className="overflow-x-clip">
       {/* SECTION 1 — Vermilion Services Hero */}
-      <section className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 pt-10 pb-20 sm:pt-14 sm:pb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <section className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
           <div className="lg:col-span-7 space-y-6">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               1×1 ONLINE THERAPY · ${PRACTICE_CONFIG.sessionFee} /{' '}
               {PRACTICE_CONFIG.sessionMinutes} MINUTES · MASSACHUSETTS
             </p>
-            <h1 className="font-display type-hero text-white">
+            <h1 className="font-display type-hero text-[var(--ds-on-accent)]">
               Work
               <br />
               With Me
             </h1>
-            <p className="font-prose text-lg sm:text-xl text-white/95 max-w-2xl leading-relaxed">
+            <p className="font-prose text-lg sm:text-xl opacity-95 max-w-2xl leading-relaxed">
               Let’s put your unique story into context. I specialize in helping
               high-achieving adults—including aviation professionals—struggling
               with imposter syndrome, family relationships, and performance
@@ -44,7 +44,7 @@ export function ServicesPage() {
           </div>
 
           <div className="lg:col-span-5">
-            <figure className="overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-2xl">
+            <figure className="overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/studio-mic.jpg')}
                 alt="Vintage metallic condenser microphone under warm stage lighting"
@@ -58,9 +58,9 @@ export function ServicesPage() {
       </section>
 
       {/* SECTION 2 — Two Bold Meriden Emblem Service Cards */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-          <article className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 sm:p-10 flex flex-col items-center text-center space-y-5 reveal-on-scroll">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
+          <article className="ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 sm:p-10 flex flex-col items-center text-center space-y-5 reveal-on-scroll">
             <ScallopBadgeShape
               color="var(--meriden-marigold)"
               className="w-24 h-24"
@@ -100,7 +100,7 @@ export function ServicesPage() {
             </div>
           </article>
 
-          <article className="rounded-2xl border-2 border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 sm:p-10 flex flex-col items-center text-center space-y-5 reveal-on-scroll">
+          <article className="ds-card border-[var(--meriden-vermilion)]/25 bg-[var(--meriden-cream-tint)]/60 p-8 sm:p-10 flex flex-col items-center text-center space-y-5 reveal-on-scroll">
             <StarburstShape
               color="var(--meriden-vermilion)"
               className="w-24 h-24"
@@ -135,14 +135,14 @@ export function ServicesPage() {
       {/* SECTION 3 — Mentaya Out-of-Network Eligibility Checker */}
       <section
         id="mentaya-checker"
-        className="bg-[var(--meriden-vermilion)] text-white px-5 sm:px-10 py-20 sm:py-24"
+        className="bg-[var(--meriden-vermilion)] text-[var(--ds-on-accent)] ds-section"
       >
-        <div className="max-w-4xl mx-auto space-y-6">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-6">
           <div className="space-y-3 text-center reveal-on-scroll">
             <p className="font-condensed text-xs sm:text-sm uppercase tracking-[0.22em] text-[var(--meriden-cream)]">
               OUT-OF-NETWORK REIMBURSEMENT // MENTAYA
             </p>
-            <h2 className="font-display type-h2 text-white">
+            <h2 className="font-display type-h2 text-[var(--ds-on-accent)]">
               Check Your OON Benefits
             </h2>
             <p className="font-prose text-base sm:text-lg text-[var(--meriden-cream)] max-w-2xl mx-auto leading-relaxed">
@@ -153,7 +153,7 @@ export function ServicesPage() {
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white p-3 sm:p-5 shadow-2xl">
+          <div className="ds-card border-transparent bg-white p-3 sm:p-5">
             <iframe
               src={PRACTICE_CONFIG.mentayaWidgetUrl}
               title="Check Mentaya Out-of-Network Eligibility"
@@ -167,8 +167,8 @@ export function ServicesPage() {
       </section>
 
       {/* SECTION 4 — Who I Work Best With (Alternating Bold Editorial Rows) */}
-      <section className="bg-[var(--meriden-cream)] px-5 sm:px-10 py-20 sm:py-28">
-        <div className="max-w-7xl mx-auto space-y-20">
+      <section className="bg-[var(--meriden-cream)] ds-section">
+        <div className="ds-container space-y-20">
           <div className="text-center space-y-2 reveal-on-scroll">
             <p className="font-condensed text-sm uppercase tracking-[0.22em] text-[var(--meriden-vermilion)]">
               SPECIALTIES &amp; POPULATIONS
@@ -179,8 +179,8 @@ export function ServicesPage() {
           </div>
 
           {/* Row 1: Aviation Personnel */}
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
-            <figure className="lg:col-span-6 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
+          <article className="grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center reveal-on-scroll">
+            <figure className="lg:col-span-6 overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/saab-340.jpg')}
                 alt="Red and silver Saab 340 turboprop aircraft on tarmac with ramp marshaller"
@@ -230,7 +230,7 @@ export function ServicesPage() {
                 .
               </p>
               <div className="pt-2">
-                <Link to="/aviation-professionals" className="btn-pill-vermilion">
+                <Link to="/v2/aviation-professionals" className="btn-pill-vermilion">
                   <span>Read Aviation Briefing &amp; FAA FAQs</span>
                 </Link>
               </div>
@@ -238,7 +238,7 @@ export function ServicesPage() {
           </article>
 
           {/* Row 2: Musicians, Performers, Artists, Actors */}
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
+          <article className="grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center reveal-on-scroll">
             <div className="lg:col-span-6 lg:order-1 order-2 space-y-4">
               <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-terracotta)]">
                 STAGE · BROADCAST · STUDIO
@@ -250,7 +250,7 @@ export function ServicesPage() {
                 You may be struggling with crippling performance anxiety and
                 self-doubt.{' '}
                 <Link
-                  to="/blog/promoted"
+                  to="/v2/blog/promoted"
                   className="underline font-semibold text-[var(--meriden-terracotta)] hover:text-[var(--meriden-vermilion)]"
                 >
                   I know what it feels like
@@ -270,13 +270,13 @@ export function ServicesPage() {
                   <span>Get Started Now</span>
                   <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
                 </a>
-                <Link to="/blog/promoted" className="btn-pill-vermilion">
+                <Link to="/v2/blog/promoted" className="btn-pill-vermilion">
                   <span>Read “Promoted *”</span>
                 </Link>
               </div>
             </div>
 
-            <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
+            <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/piano-sheet-music.jpg')}
                 alt="Open sheet music on an upright piano"
@@ -289,8 +289,8 @@ export function ServicesPage() {
           </article>
 
           {/* Row 3: University Students & PhD Candidates */}
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
-            <figure className="lg:col-span-6 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
+          <article className="grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center reveal-on-scroll">
+            <figure className="lg:col-span-6 overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/phd-books.jpg')}
                 alt="Person standing against a brick wall holding a tall stack of encyclopedia volumes in front of their face"
@@ -325,7 +325,7 @@ export function ServicesPage() {
           </article>
 
           {/* Row 4: Managers, Leaders & Adult Children of Narcissistic Parents */}
-          <article className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center reveal-on-scroll">
+          <article className="grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center reveal-on-scroll">
             <div className="lg:col-span-6 lg:order-1 order-2 space-y-4">
               <p className="font-condensed text-xs uppercase tracking-[0.2em] text-[var(--meriden-terracotta)]">
                 LEADERSHIP · FAMILY DYNAMICS · BOUNDARIES
@@ -342,7 +342,7 @@ export function ServicesPage() {
               </p>
             </div>
 
-            <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden rounded-sm bg-[var(--meriden-espresso)] shadow-lg">
+            <figure className="lg:col-span-6 lg:order-2 order-1 overflow-hidden ds-media-frame bg-[var(--meriden-espresso)]">
               <img
                 src={assetUrl('media/red-seat-fenway.jpg')}
                 alt="Lone red stadium seat standing out in a sea of green seats"

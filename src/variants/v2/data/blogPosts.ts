@@ -1,4 +1,4 @@
-import { assetUrl } from '../lib/assetUrl';
+import { assetUrl } from '../../../lib/assetUrl';
 
 export type EssayBlock =
   | { type: 'paragraph'; html: string }

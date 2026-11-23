@@ -1,0 +1,281 @@
+/* Top-level Scroll Reveal Keyframes (unscoped per CSS spec) */
+@keyframes ds-reveal-fade {
+  from {
+    opacity: 0.06;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ds-reveal-slide {
+  from {
+    opacity: 0.08;
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@keyframes ds-reveal-scale {
+  from {
+    opacity: 0.1;
+    scale: 0.93;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+@keyframes ds-reveal-clip {
+  from {
+    opacity: 0.12;
+    clip-path: inset(0 0 18% 0);
+  }
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Shared Layout Primitives wired to Design System Tokens */
+.ds-section {
+  padding-block: clamp(2.5rem, 6vw, var(--ds-section-py, 5rem));
+  padding-inline: clamp(1rem, 4vw, var(--ds-site-margin, 2rem));
+}
+
+.ds-container {
+  max-inline-size: var(--ds-page-max-width, 72rem);
+  margin-inline: auto;
+}
+
+.ds-grid-gap {
+  gap: var(--ds-element-gap, 1.5rem);
+}
+
+.ds-card {
+  border-radius: var(--ds-card-radius, 0px);
+  border-width: var(--ds-card-border-width, 1px);
+  border-style: solid;
+  box-shadow: var(--ds-card-shadow, none);
+}
+
+.ds-media-frame {
+  border-radius: var(--ds-card-radius, 0px);
+  box-shadow: var(--ds-card-shadow, none);
+}
+
+/* Default static visible state for scroll reveal targets */
+.reveal-on-scroll {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+  clip-path: inset(0 0 0 0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    [data-ds-anim="fade"] .reveal-on-scroll {
+      animation: ds-reveal-fade linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry var(--ds-anim-range-end, 30%);
+    }
+
+    [data-ds-anim="slide"] .reveal-on-scroll {
+      animation: ds-reveal-slide linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry var(--ds-anim-range-end, 30%);
+    }
+
+    [data-ds-anim="scale"] .reveal-on-scroll {
+      animation: ds-reveal-scale linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry var(--ds-anim-range-end, 30%);
+    }
+
+    [data-ds-anim="clip"] .reveal-on-scroll {
+      animation: ds-reveal-clip linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry var(--ds-anim-range-end, 30%);
+    }
+
+    [data-ds-anim="fade"] .reveal-on-scroll.ds-replay-active {
+      animation: ds-reveal-fade var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: auto;
+    }
+
+    [data-ds-anim="slide"] .reveal-on-scroll.ds-replay-active {
+      animation: ds-reveal-slide var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: auto;
+    }
+
+    [data-ds-anim="scale"] .reveal-on-scroll.ds-replay-active {
+      animation: ds-reveal-scale var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: auto;
+    }
+
+    [data-ds-anim="clip"] .reveal-on-scroll.ds-replay-active {
+      animation: ds-reveal-clip var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-timeline: auto;
+    }
+  }
+
+  /* Progressive IntersectionObserver fallback */
+  [data-ds-anim="fade"] .reveal-on-scroll.js-reveal-pending {
+    opacity: 0;
+  }
+
+  [data-ds-anim="slide"] .reveal-on-scroll.js-reveal-pending {
+    opacity: 0;
+    translate: 0 28px;
+  }
+
+  [data-ds-anim="scale"] .reveal-on-scroll.js-reveal-pending {
+    opacity: 0;
+    scale: 0.93;
+  }
+
+  [data-ds-anim="clip"] .reveal-on-scroll.js-reveal-pending {
+    opacity: 0.12;
+    clip-path: inset(0 0 18% 0);
+  }
+
+  .reveal-on-scroll.js-reveal-visible {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+    clip-path: inset(0 0 0 0);
+    transition:
+      opacity var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1),
+      translate var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1),
+      scale var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1),
+      clip-path var(--ds-anim-duration, 0.55s) cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
+/* Reusable Squarespace-style Site Form Styling + Brand-Consistent Controls */
+.ds-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-form-gap, 1rem);
+  accent-color: var(--ds-form-accent, var(--ds-accent-primary, #e04f26));
+}
+
+.ds-field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.ds-field-label {
+  font-family: var(--ds-font-accent, sans-serif);
+  font-size: 0.75rem;
+  letter-spacing: var(--ds-accent-ls, 0.08em);
+  text-transform: var(--ds-form-label-transform, uppercase);
+  color: var(--ds-ink-secondary, #52514d);
+}
+
+.ds-field-input {
+  width: 100%;
+  font-family: var(--ds-font-body, sans-serif);
+  font-size: 0.875rem;
+  color: var(--ds-ink-primary, #141413);
+  padding: 0.625rem 0.85rem;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+[data-ds-form-style="outlined"] .ds-field-input,
+.ds-form[data-form-style="outlined"] .ds-field-input {
+  background-color: var(--ds-page-bg, #ffffff);
+  border: var(--ds-form-border-width, 1px) solid var(--ds-accent-soft, #d4d4d4);
+  border-radius: var(--ds-form-radius, 4px);
+}
+
+[data-ds-form-style="filled"] .ds-field-input,
+.ds-form[data-form-style="filled"] .ds-field-input {
+  background-color: var(--ds-surface-alt, #f4f4f4);
+  border: var(--ds-form-border-width, 1px) solid transparent;
+  border-radius: var(--ds-form-radius, 12px);
+}
+
+[data-ds-form-style="underline"] .ds-field-input,
+.ds-form[data-form-style="underline"] .ds-field-input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: var(--ds-form-border-width, 2px) solid var(--ds-ink-secondary, #52514d);
+  border-radius: 0;
+  padding-inline: 0.15rem;
+}
+
+.ds-field-input:focus-visible {
+  border-color: var(--ds-accent-primary, #e04f26);
+  box-shadow: 0 0 0 2px color-mix(in oklab, var(--ds-accent-primary, #e04f26) 24%, transparent);
+}
+
+.ds-form-check-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ds-font-body, sans-serif);
+  font-size: 0.8125rem;
+  color: var(--ds-ink-primary, #141413);
+  cursor: pointer;
+}
+
+.ds-form-check-label input[type="checkbox"] {
+  inline-size: 1rem;
+  block-size: 1rem;
+  cursor: pointer;
+}
+
+@supports not (accent-color: #111111) {
+  .ds-form input[type="checkbox"].visually-hidden {
+    position: absolute !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    width: 1px !important;
+    height: 1px !important;
+    margin: -1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+
+  .ds-form label.ds-form-check-label {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+
+  .ds-form input[type="checkbox"].visually-hidden + span::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid var(--ds-ink-secondary, #52514d);
+    background: var(--ds-page-bg, #ffffff);
+    border-radius: 3px;
+  }
+
+  .ds-form input[type="checkbox"].visually-hidden:checked + span::before {
+    background-color: var(--ds-form-accent, #e04f26);
+    border-color: var(--ds-form-accent, #e04f26);
+  }
+
+  .ds-form input[type="checkbox"].visually-hidden:checked + span::after {
+    content: "✓";
+    position: absolute;
+    left: 0.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ds-on-accent, #ffffff);
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+}
