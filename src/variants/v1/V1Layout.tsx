@@ -1,20 +1,45 @@
-import { Link, NavLink, Outlet } from 'react-router-dom';
+import { useEffect, useRef } from 'react';
+import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
 import { ArrowUpRight, ShieldCheck, Radio } from 'lucide-react';
-import { PRACTICE_CONFIG } from '../data/siteContent';
+import { PRACTICE_CONFIG } from './data/siteContent';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
+import { useDesignSystem } from '../../design-system/useDesignSystem';
+import { DesignSystemPanel } from '../../design-system/DesignSystemPanel';
 
 const NAV_ITEMS = [
-  { to: '/', label: 'Practice' },
-  { to: '/about', label: 'About Jonathan' },
-  { to: '/aviation-professionals', label: 'Aviation' },
-  { to: '/services', label: 'Rates & OON Benefits' },
+  { to: '/v1', label: 'Practice' },
+  { to: '/v1/about', label: 'About Jonathan' },
+  { to: '/v1/aviation-professionals', label: 'Aviation' },
+  { to: '/v1/services', label: 'Rates & OON Benefits' },
 ];
 
-export function Layout() {
+export function V1Layout() {
+  const location = useLocation();
+  const rootRef = useRef<HTMLDivElement>(null);
+  const ds = useDesignSystem('v1', rootRef);
+
+  useScrollReveal(
+    location.pathname,
+    ds.settings.animations.style,
+    ds.replayNonce,
+  );
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
-    <div className="min-h-screen flex flex-col bg-[var(--surface-bg)] text-[var(--ink-primary)]">
+    <div
+      ref={rootRef}
+      data-variant="v1"
+      className="min-h-screen flex flex-col bg-[var(--surface-bg)] text-[var(--ink-primary)]"
+    >
       {/* Top Technical Telemetry Bar (Braun-inspired functional status header) */}
-      <div className="border-b border-[var(--border-hairline)] bg-[var(--surface-card)] px-4 sm:px-8 py-2 text-xs font-technical text-[var(--ink-secondary)]">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div
+        className="border-b border-[var(--border-hairline)] bg-[var(--surface-card)] py-2 text-xs font-technical text-[var(--ink-secondary)]"
+        style={{ paddingInline: 'clamp(1rem, 4vw, var(--ds-site-margin, 2rem))' }}
+      >
+        <div className="ds-container flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <span
               className="inline-block w-2 h-2 rounded-full bg-[var(--accent-signal)]"
@@ -35,10 +60,13 @@ export function Layout() {
       </div>
 
       {/* Primary Semantic Header & Navigation */}
-      <header className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--surface-bg)]/95 backdrop-blur-sm px-4 sm:px-8 py-4">
-        <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-4">
+      <header
+        className="sticky top-0 z-30 border-b border-[var(--border-hairline)] bg-[var(--surface-bg)]/95 backdrop-blur-sm py-4"
+        style={{ paddingInline: 'clamp(1rem, 4vw, var(--ds-site-margin, 2rem))' }}
+      >
+        <div className="ds-container flex flex-wrap items-center justify-between gap-4">
           <Link
-            to="/"
+            to="/v1"
             className="group flex items-baseline gap-2.5 focus:outline-none"
           >
             <span className="font-bold tracking-tight text-lg sm:text-xl">
@@ -55,7 +83,7 @@ export function Layout() {
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
-                    end={item.to === '/'}
+                    end={item.to === '/v1'}
                     className={({ isActive }) =>
                       `transition-colors py-1 border-b-2 ${
                         isActive
@@ -75,7 +103,7 @@ export function Layout() {
             href={PRACTICE_CONFIG.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 bg-[var(--ink-primary)] hover:bg-[var(--accent-signal)] text-[var(--surface-bg)] text-xs sm:text-sm font-technical uppercase tracking-wider px-4 py-2.5 rounded-sm transition-colors"
+            className="v1-btn-header"
           >
             <span>Free 15-Min Consult</span>
             <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -89,10 +117,13 @@ export function Layout() {
       </main>
 
       {/* Semantic Footer */}
-      <footer className="border-t border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[#f6f5f1] px-4 sm:px-8 py-14">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10">
+      <footer
+        className="border-t border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[var(--surface-dark-ink)] py-14"
+        style={{ paddingInline: 'clamp(1rem, 4vw, var(--ds-site-margin, 2rem))' }}
+      >
+        <div className="ds-container grid grid-cols-1 md:grid-cols-12 ds-grid-gap">
           <div className="md:col-span-6 space-y-4">
-            <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[#a3a19a]">
+            <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--surface-dark-muted)]">
               <Radio
                 className="w-4 h-4 text-[var(--accent-signal)]"
                 aria-hidden="true"
@@ -108,7 +139,7 @@ export function Layout() {
                 href={PRACTICE_CONFIG.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white text-xs font-technical uppercase tracking-wider px-5 py-3 rounded-sm transition-colors"
+                className="v1-btn-primary"
               >
                 <span>Schedule Free 15-Minute Consultation</span>
                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -117,7 +148,7 @@ export function Layout() {
           </div>
 
           <div className="md:col-span-3 space-y-2 text-sm">
-            <h2 className="font-technical text-xs uppercase tracking-widest text-[#a3a19a] mb-3">
+            <h2 className="font-technical text-xs uppercase tracking-widest text-[var(--surface-dark-muted)] mb-3">
               Navigation
             </h2>
             <ul className="space-y-2">
@@ -125,7 +156,7 @@ export function Layout() {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className="text-[#d8d6ce] hover:text-white transition-colors"
+                    className="text-[var(--surface-dark-muted)] hover:text-[var(--surface-dark-ink)] transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -135,23 +166,23 @@ export function Layout() {
           </div>
 
           <div className="md:col-span-3 space-y-2 text-sm">
-            <h2 className="font-technical text-xs uppercase tracking-widest text-[#a3a19a] mb-3">
-              Practice & Credentials
+            <h2 className="font-technical text-xs uppercase tracking-widest text-[var(--surface-dark-muted)] mb-3">
+              Practice &amp; Credentials
             </h2>
-            <p className="text-[#d8d6ce]">{PRACTICE_CONFIG.clinician}</p>
-            <p className="text-[#a3a19a] text-xs">
+            <p className="text-[var(--surface-dark-muted)]">{PRACTICE_CONFIG.clinician}</p>
+            <p className="text-[var(--surface-dark-muted)] text-xs opacity-80">
               MA Licensed Mental Health Counselor #{PRACTICE_CONFIG.licenseNumber}
             </p>
             <p className="pt-2">
               <a
                 href={PRACTICE_CONFIG.phoneHref}
-                className="text-[#d8d6ce] hover:text-white transition-colors block"
+                className="text-[var(--surface-dark-muted)] hover:text-[var(--surface-dark-ink)] transition-colors block"
               >
                 {PRACTICE_CONFIG.phone}
               </a>
               <a
                 href={`mailto:${PRACTICE_CONFIG.email}`}
-                className="text-[#d8d6ce] hover:text-white transition-colors block"
+                className="text-[var(--surface-dark-muted)] hover:text-[var(--surface-dark-ink)] transition-colors block"
               >
                 {PRACTICE_CONFIG.email}
               </a>
@@ -161,7 +192,7 @@ export function Layout() {
                 href={PRACTICE_CONFIG.licenseVerifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-technical text-[#a3a19a] hover:text-white underline underline-offset-4"
+                className="inline-flex items-center gap-1.5 text-xs font-technical text-[var(--surface-dark-muted)] hover:text-[var(--surface-dark-ink)] underline underline-offset-4"
               >
                 <ShieldCheck className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>Verify MA License #{PRACTICE_CONFIG.licenseNumber}</span>
@@ -170,7 +201,7 @@ export function Layout() {
           </div>
         </div>
 
-        <div className="max-w-6xl mx-auto mt-12 pt-6 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-xs text-[#8c8a84] font-technical">
+        <div className="ds-container mt-12 pt-6 border-t border-current/15 flex flex-wrap items-center justify-between gap-4 text-xs text-[var(--surface-dark-muted)] opacity-80 font-technical">
           <p>© {new Date().getFullYear()} Jonathan Farr, LMHC. All rights reserved.</p>
           <p>
             Note: Standard email and SMS are not HIPAA-encrypted. Use the secure
@@ -178,6 +209,23 @@ export function Layout() {
           </p>
         </div>
       </footer>
+
+      <DesignSystemPanel
+        variantId="v1"
+        settings={ds.settings}
+        isCustomized={ds.isCustomized}
+        statusMessage={ds.statusMessage}
+        onUpdateSection={ds.updateSection}
+        onApplyFontPack={ds.applyFontPack}
+        onApplyColorPalette={ds.applyColorPalette}
+        onApplyFormPack={ds.applyFormPack}
+        onReset={ds.resetToDefaults}
+        onExport={ds.exportToFile}
+        onImport={ds.importFromFile}
+        onCopyCss={ds.copyCss}
+        onReplayAnimations={ds.triggerReplayAnimations}
+        onClearStatus={ds.clearStatus}
+      />
     </div>
   );
 }

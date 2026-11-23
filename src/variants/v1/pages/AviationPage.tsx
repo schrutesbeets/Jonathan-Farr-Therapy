@@ -4,8 +4,8 @@ import { PRACTICE_CONFIG } from '../data/siteContent';
 export function AviationPage() {
   return (
     <div>
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto space-y-6">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container space-y-6 reveal-on-scroll">
           <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
             <Plane className="w-3.5 h-3.5" aria-hidden="true" />
             <span>
@@ -30,9 +30,9 @@ export function AviationPage() {
         </div>
       </section>
 
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <article className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4">
+      <section className="ds-section">
+        <div className="ds-container grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
+          <article className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4 reveal-on-scroll">
             <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               <ShieldAlert className="w-4 h-4" aria-hidden="true" />
               <span>FAA REPORTING & PRIVACY</span>
@@ -53,7 +53,7 @@ export function AviationPage() {
             </p>
           </article>
 
-          <article className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4">
+          <article className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-4 reveal-on-scroll">
             <div className="flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               <FileCheck2 className="w-4 h-4" aria-hidden="true" />
               <span>COLLABORATIVE DOCUMENTATION</span>
@@ -77,12 +77,12 @@ export function AviationPage() {
           </article>
         </div>
 
-        <div className="max-w-6xl mx-auto mt-10">
+        <div className="ds-container mt-10">
           <a
             href={PRACTICE_CONFIG.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors"
+            className="v1-btn-primary"
           >
             <span>Book a Confidential 15-Minute Consultation</span>
             <ArrowUpRight className="w-4 h-4" aria-hidden="true" />

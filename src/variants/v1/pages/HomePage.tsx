@@ -12,8 +12,8 @@ export function HomePage() {
   return (
     <div>
       {/* Hero Section — Target 5-second impression: "This guy's different." */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-start">
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
               <span>00 // ONLINE THERAPY IN MASSACHUSETTS</span>
@@ -38,14 +38,14 @@ export function HomePage() {
                 href={PRACTICE_CONFIG.bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors"
+                className="v1-btn-primary"
               >
                 <span>Schedule a Free 15-Minute Consultation</span>
                 <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
               </a>
               <Link
-                to="/about"
-                className="inline-flex items-center gap-2 border border-[var(--ink-primary)] hover:bg-[var(--ink-primary)] hover:text-[var(--surface-bg)] font-technical text-xs sm:text-sm uppercase tracking-wider px-5 py-3.5 rounded-sm transition-colors"
+                to="/v1/about"
+                className="v1-btn-secondary"
               >
                 <span>Why “I Was an Imposter, Too”</span>
               </Link>
@@ -55,7 +55,7 @@ export function HomePage() {
           {/* Functional Specification Card (Braun telemetry aesthetic) */}
           <aside
             aria-label="Practice Specifications"
-            className="lg:col-span-4 border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 space-y-5"
+            className="lg:col-span-4 ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 space-y-5 reveal-on-scroll"
           >
             <div className="flex items-center justify-between border-b border-[var(--border-hairline)] pb-3">
               <span className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
@@ -109,9 +109,9 @@ export function HomePage() {
       </section>
 
       {/* Section 01: The Tipping Point */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="max-w-3xl space-y-3">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container space-y-10">
+          <div className="max-w-3xl space-y-3 reveal-on-scroll">
             <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               01 // THE TIPPING POINT
             </p>
@@ -125,11 +125,11 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
             {TIPPING_POINTS.map((item) => (
               <article
                 key={item.category}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 flex flex-col justify-between space-y-4"
+                className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 flex flex-col justify-between space-y-4 reveal-on-scroll"
               >
                 <div className="space-y-3">
                   <p className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
@@ -149,9 +149,9 @@ export function HomePage() {
       </section>
 
       {/* Section 02: The Autocross Metaphor (Living at the Limit without Spinning Out) */}
-      <section className="border-b border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[#f6f5f1] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-7 space-y-5">
+      <section className="border-b border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[var(--surface-dark-ink)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-center">
+          <div className="lg:col-span-7 space-y-5 reveal-on-scroll">
             <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               <Gauge className="w-4 h-4" aria-hidden="true" />
               <span>02 // THE AUTOCROSS PRINCIPLE: GRIP VS. SPINOUT</span>
@@ -161,16 +161,16 @@ export function HomePage() {
               or <em className="font-editorial">near</em> the limit—instead of
               constantly trying to push past it?
             </h2>
-            <p className="text-[#d8d6ce] leading-relaxed">
+            <p className="text-[var(--surface-dark-muted)] leading-relaxed">
               The tires on a race car only have so much grip. Just before they
               lose that grip, they tell you—you’ll hear them start to{' '}
-              <strong className="text-white">chirp</strong>. Chances are, that’s
+              <strong className="text-[var(--surface-dark-ink)]">chirp</strong>. Chances are, that’s
               where you are right now, and it’s a frightening place. You’re
               afraid you’re going to lose grip completely and spin out.
             </p>
-            <p className="text-[#d8d6ce] leading-relaxed">
+            <p className="text-[var(--surface-dark-muted)] leading-relaxed">
               Does that mean settling for limitations?{' '}
-              <strong className="text-white">Absolutely not.</strong> It’s that
+              <strong className="text-[var(--surface-dark-ink)]">Absolutely not.</strong> It’s that
               very chirping of the tires that tells an autocross driver where the
               limit is—and knowing that limit is what gets them around the track{' '}
               <em>faster</em>. Developing that awareness so you can set real
@@ -178,11 +178,11 @@ export function HomePage() {
             </p>
           </div>
 
-          <div className="lg:col-span-5 border border-white/15 bg-white/5 p-6 sm:p-8 space-y-4">
+          <div className="lg:col-span-5 ds-card border-[var(--surface-dark-ink)]/15 bg-[var(--surface-dark-ink)]/5 p-6 sm:p-8 space-y-4 reveal-on-scroll">
             <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               BOUNDARY TELEMETRY // 3 QUESTIONS
             </p>
-            <p className="text-sm text-[#d8d6ce]">
+            <p className="text-sm text-[var(--surface-dark-muted)]">
               Imagine establishing one genuine boundary in your life right now.
               Ask yourself:
             </p>
@@ -202,9 +202,9 @@ export function HomePage() {
       </section>
 
       {/* Section 03: Why Private-Pay / Value Proposition */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="max-w-3xl space-y-3">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container space-y-10">
+          <div className="max-w-3xl space-y-3 reveal-on-scroll">
             <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               03 // WHY STEP OUTSIDE INSURANCE PANELS
             </p>
@@ -213,11 +213,11 @@ export function HomePage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 ds-grid-gap">
             {CORE_VALUE_PILLARS.map((pillar) => (
               <article
                 key={pillar.index}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-bg)] p-6 sm:p-8 space-y-4"
+                className="ds-card border-[var(--border-hairline)] bg-[var(--surface-bg)] p-6 sm:p-8 space-y-4 reveal-on-scroll"
               >
                 <div className="flex items-center justify-between font-technical text-xs text-[var(--ink-muted)] border-b border-[var(--border-hairline)] pb-3">
                   <span>PILLAR {pillar.index}</span>
@@ -234,9 +234,9 @@ export function HomePage() {
       </section>
 
       {/* Section 04: Populations Served */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="flex flex-wrap items-end justify-between gap-4">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container space-y-10">
+          <div className="flex flex-wrap items-end justify-between gap-4 reveal-on-scroll">
             <div className="max-w-2xl space-y-3">
               <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
                 04 // SPECIALIZED POPULATIONS
@@ -246,7 +246,7 @@ export function HomePage() {
               </h2>
             </div>
             <Link
-              to="/aviation-professionals"
+              to="/v1/aviation-professionals"
               className="inline-flex items-center gap-1.5 font-technical text-xs uppercase tracking-wider text-[var(--accent-signal)] hover:underline"
             >
               <Compass className="w-4 h-4" aria-hidden="true" />
@@ -254,11 +254,11 @@ export function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
             {CLIENT_POPULATIONS.map((pop) => (
               <article
                 key={pop.id}
-                className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-3"
+                className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-3 reveal-on-scroll"
               >
                 <p className="font-technical text-xs uppercase tracking-wider text-[var(--accent-signal)]">
                   {pop.subtitle}
@@ -274,8 +274,8 @@ export function HomePage() {
       </section>
 
       {/* Section 05: Addressing Primary Hesitations (Native Exclusive <details> Accordion) */}
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <section className="ds-section">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-8 reveal-on-scroll">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               <Sparkles className="w-4 h-4" aria-hidden="true" />

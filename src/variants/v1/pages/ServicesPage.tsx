@@ -4,9 +4,9 @@ import { PRACTICE_CONFIG } from '../data/siteContent';
 export function ServicesPage() {
   return (
     <div>
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-7 space-y-6">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap items-start">
+          <div className="lg:col-span-7 space-y-6 reveal-on-scroll">
             <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
               <span>SERVICES, FEES & OUT-OF-NETWORK REIMBURSEMENT</span>
             </div>
@@ -27,7 +27,7 @@ export function ServicesPage() {
 
           <aside
             aria-label="Fee Breakdown"
-            className="lg:col-span-5 border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-5"
+            className="lg:col-span-5 ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-5 reveal-on-scroll"
           >
             <div className="flex items-baseline justify-between border-b border-[var(--border-hairline)] pb-4">
               <span className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
@@ -59,7 +59,7 @@ export function ServicesPage() {
               href={PRACTICE_CONFIG.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full inline-flex items-center justify-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs uppercase tracking-wider px-5 py-3.5 rounded-sm transition-colors"
+              className="w-full v1-btn-primary"
             >
               <span>Schedule Free 15-Minute Consultation</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
@@ -69,8 +69,8 @@ export function ServicesPage() {
       </section>
 
       {/* Mentaya Out-of-Network Benefits Eligibility Section */}
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-4xl mx-auto space-y-6">
+      <section className="ds-section">
+        <div className="max-w-[min(56rem,var(--ds-page-max-width))] mx-auto space-y-6 reveal-on-scroll">
           <div className="space-y-2">
             <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               INSTANT REIMBURSEMENT CHECKER // MENTAYA
@@ -86,7 +86,7 @@ export function ServicesPage() {
             </p>
           </div>
 
-          <div className="border border-[var(--border-hairline)] bg-white p-2 sm:p-4 rounded-sm">
+          <div className="ds-card border-[var(--border-hairline)] bg-white p-2 sm:p-4">
             <iframe
               src={PRACTICE_CONFIG.mentayaWidgetUrl}
               title="Check Mentaya Out-of-Network Eligibility"

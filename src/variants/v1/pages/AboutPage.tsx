@@ -9,9 +9,9 @@ export function AboutPage() {
   return (
     <div>
       {/* Hero / Story Lead */}
-      <section className="border-b border-[var(--border-hairline)] px-4 sm:px-8 py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
-          <div className="lg:col-span-7 space-y-6">
+      <section className="border-b border-[var(--border-hairline)] ds-section">
+        <div className="ds-container grid grid-cols-1 lg:grid-cols-12 ds-grid-gap">
+          <div className="lg:col-span-7 space-y-6 reveal-on-scroll">
             <div className="inline-flex items-center gap-2 font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)] border border-[var(--border-hairline)] bg-[var(--surface-card)] px-3 py-1.5 rounded-sm">
               <span>ABOUT JONATHAN FARR, LMHC // SIGNAL VS. NOISE</span>
             </div>
@@ -70,9 +70,9 @@ export function AboutPage() {
           {/* Credentials & Philosophy Sidebar */}
           <aside
             aria-label="Credentials and Verification"
-            className="lg:col-span-5 space-y-6"
+            className="lg:col-span-5 space-y-6 reveal-on-scroll"
           >
-            <div className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-6">
+            <div className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-6">
               <div className="border-b border-[var(--border-hairline)] pb-3 flex items-center justify-between">
                 <h2 className="font-technical text-xs uppercase tracking-widest text-[var(--ink-muted)]">
                   EDUCATION & LICENSURE
@@ -122,14 +122,14 @@ export function AboutPage() {
             </div>
 
             {/* Brief Highlight: What Therapy With Jonathan Actually Feels Like */}
-            <div className="border border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[#f6f5f1] p-6 sm:p-8 space-y-4">
+            <div className="ds-card border-[var(--border-hairline)] bg-[var(--surface-dark)] text-[var(--surface-dark-ink)] p-6 sm:p-8 space-y-4">
               <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
                 HOW I WORK // WHY CLIENTS STAY
               </p>
               <h2 className="text-xl font-bold">
                 Colorful, direct, and grounded in what you actually value.
               </h2>
-              <p className="text-sm text-[#d8d6ce] leading-relaxed">
+              <p className="text-sm text-[var(--surface-dark-muted)] leading-relaxed">
                 Therapy with me isn’t passive nodding. I reflect your story back
                 to you in my own words and colorful illustrations—comparisons
                 that often make clients laugh and immediately dial down anxiety.
@@ -143,9 +143,9 @@ export function AboutPage() {
       </section>
 
       {/* Client Fit Matrix ("I work best with..." vs "Probably not the therapist for you if...") */}
-      <section className="px-4 sm:px-8 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-10">
-          <div className="max-w-2xl space-y-3">
+      <section className="ds-section">
+        <div className="ds-container space-y-10">
+          <div className="max-w-2xl space-y-3 reveal-on-scroll">
             <p className="font-technical text-xs uppercase tracking-widest text-[var(--accent-signal)]">
               MUTUAL FIT DIAGNOSTIC
             </p>
@@ -154,8 +154,8 @@ export function AboutPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <article className="border border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 ds-grid-gap">
+            <article className="ds-card border-[var(--border-hairline)] bg-[var(--surface-card)] p-6 sm:p-8 space-y-5 reveal-on-scroll">
               <div className="flex items-center gap-2.5 border-b border-[var(--border-hairline)] pb-4">
                 <CheckCircle2
                   className="w-5 h-5 text-[var(--accent-signal)]"
@@ -180,7 +180,7 @@ export function AboutPage() {
               </ul>
             </article>
 
-            <article className="border border-[var(--border-hairline)] bg-[var(--surface-bg)] p-6 sm:p-8 space-y-5">
+            <article className="ds-card border-[var(--border-hairline)] bg-[var(--surface-bg)] p-6 sm:p-8 space-y-5 reveal-on-scroll">
               <div className="flex items-center gap-2.5 border-b border-[var(--border-hairline)] pb-4">
                 <XCircle
                   className="w-5 h-5 text-[var(--ink-muted)]"
@@ -211,7 +211,7 @@ export function AboutPage() {
               href={PRACTICE_CONFIG.bookingUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[var(--accent-signal)] hover:bg-[var(--accent-signal-hover)] text-white font-technical text-xs sm:text-sm uppercase tracking-wider px-6 py-3.5 rounded-sm transition-colors"
+              className="v1-btn-primary"
             >
               <span>Schedule a Free 15-Minute Consultation</span>
               <ArrowUpRight className="w-4 h-4" aria-hidden="true" />
